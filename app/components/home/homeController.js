@@ -1,4 +1,4 @@
-angular.module('AtraciApp.Controllers', [])
+angularControllers
     .directive('tracks', function(){
         return {
             restrict : 'E',

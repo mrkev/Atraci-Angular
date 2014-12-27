@@ -23,11 +23,11 @@ blockquote, q {
   quotes: none; }
 
 blockquote:before, blockquote:after {
-  content: "";
+  content: '';
   content: none; }
 
 q:before, q:after {
-  content: "";
+  content: '';
   content: none; }
 
 table {
@@ -38,6 +38,19 @@ table {
 /** Fonts */
 /** Sizes */
 /** Combinations */
+::-webkit-scrollbar {
+  width: 10px; }
+
+::-webkit-scrollbar-track {
+  background-color: #fff; }
+
+::-webkit-scrollbar-thumb {
+  background-color: #cfcdd0;
+  border-radius: 5em; }
+
+::-webkit-scrollbar-button {
+  height: 0; }
+
 html, body {
   height: 100%;
   overflow: hidden; }
@@ -94,7 +107,14 @@ aside {
   box-sizing: border-box;
   border-right: 1px solid #d5d5d5; }
   aside .searchBox {
-    border-bottom: 1px solid #d5d5d5; }
+    border-bottom: 1px solid #d5d5d5;
+    position: relative; }
+    aside .searchBox .fa {
+      position: absolute;
+      right: 19px;
+      top: 19px;
+      color: #888;
+      font-size: 12px; }
     aside .searchBox #searchInput {
       margin: 10px;
       padding: 5px;
@@ -105,8 +125,8 @@ aside {
       border-radius: 10em;
       font-size: 16px; }
   aside .sideMenu {
-    height: -webkit-calc(100% - 290px);
-    height: calc(100% - 290px);
+    height: -webkit-calc(100% - 240px);
+    height: calc(100% - 240px);
     overflow-y: auto;
     overflow-x: hidden; }
     aside .sideMenu .sideMenuItem {
@@ -127,7 +147,7 @@ aside {
       border-bottom: 1px solid #d5d5d5; }
   aside .videoPlayerBox {
     border-top: 1px solid #d5d5d5;
-    height: 250px;
+    height: 200px;
     width: 250px;
     background: #d5d5d5;
     box-sizing: border-box;
@@ -217,7 +237,7 @@ footer {
     footer .playerActions .trackDetails {
       margin-top: 13px;
       float: left;
-      width: 600px; }
+      width: 450px; }
       footer .playerActions .trackDetails .trackName {
         margin-top: 5px;
         font-size: 25px; }

@@ -8,9 +8,10 @@
   },
   "main" : "index.html",
   "window": {
-    "width": 1280,
-    "height": 800,
-    "frame": false
+    "width": 1096,
+    "height": 700,
+    "frame": false,
+    "toolbar": true
   },
   "single-instance": true,
   "dependencies" : {
@@ -24,9 +25,8 @@
     "request"     : "2.51.0",
     "youtube-dl"  : "1.6.0",
     "gulp"        : "3.8.10",
-    "gulp-open" : "0.3.1",
+    "gulp-sass" : "1.2.4",
     "gulp-concat" : "2.4.2",
-    "gulp-replace" : "0.5.0",
     "gulp-shell" : "0.2.11",
     "gulp-minify-css" : "0.3.11"
   }

@@ -1,23 +1,44 @@
+/**
+ * Open exe
+ Minify JS
+ Sass to Css
+ Minify Css
+ Build windows
+ Build mac
+ Build linux
+ build all
+ */
+
 var gulp = require('gulp'),
-    open = require('gulp-open'),
+    shell = require('gulp-shell'),
     concat = require('gulp-concat'),
-    minifyCSS = require('gulp-minify-css');
+    minifyCSS = require('gulp-minify-css'),
+    sass = require('gulp-sass');
 
-gulp.task('default', ['concatJS','openExe']);
+gulp.task('default', ['buildDev']);
 
-gulp.task('openExe', function () {
-    gulp.src('nw.exe')
-        .pipe(open());
+gulp.task('buildProd', ['scssToCss', 'minifyCss', 'concatJS','openApp']);
+gulp.task('buildDev', ['scssToCss', 'concatJS','openApp']);
+
+gulp.task('openApp', function () {
+    gulp.src('nw/nw.exe', {read: true})
+        .pipe(shell(['<%= file.path %> ./']));
 });
 
 gulp.task('concatJS', function () {
-    gulp.src(['app/*', 'app/components/*/*.js', 'app/shared/*/*.js'])
+    gulp.src(['app/*', 'app/shared/*/*.js', 'app/components/*/*.js'])
         .pipe(concat('main.js'))
         .pipe(gulp.dest('assets/js/'));
 });
 
-gulp.task('minifyCss', function () {
-    gulp.src('assets/sass/main.css')
-        .pipe(minifyCSS())
+gulp.task('scssToCss', function () {
+    gulp.src('assets/sass/main.scss')
+        .pipe(sass())
         .pipe(gulp.dest('assets/css'));
+});
+
+gulp.task('minifyCss', function () {
+    gulp.src('assets/css/main.css')
+        .pipe(minifyCSS())
+        .pipe(gulp.dest(''));
 });

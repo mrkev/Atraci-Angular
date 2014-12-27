@@ -7,7 +7,10 @@
     <meta name="description" content="Free Music Streaming Player">
     <meta name="author" content="Avihay Menahem">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/sass/main.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-resource/angular-resource.min.js"></script>
+    <script src="assets/js/main.js"></script>
 </head>
 
 <body ng-app="AtraciApp">
@@ -15,15 +18,16 @@
 <header>
     <div class="logo pullLeft">ATRACI</div>
     <div class="mid pullLeft"></div>
-    <ul class="windowControls">
-        <li class="fa fa-minus"></li>
-        <li class="fa fa-expand"></li>
-        <li class="fa fa-close"></li>
+    <ul class="windowControls" ng-controller="windowController">
+        <li class="fa fa-minus" ng-click="minimizeWindow()"></li>
+        <li class="fa fa-expand" ng-click="expandWindow()"></li>
+        <li class="fa fa-close" ng-click="closeWindow()"></li>
     </ul>
 </header>
 
 <aside class="pullLeft">
     <div class="searchBox">
+        <i class="fa fa-search"></i>
         <input id="searchInput" type="text" placeholder="Search..."/>
     </div>
     <ul class="sideMenu">
@@ -105,9 +109,5 @@
         </div>
     </div>
 </footer>
-
-<script src="node_modules/angular/angular.min.js"></script>
-<script src="node_modules/angular-resource/angular-resource.min.js"></script>
-<script src="assets/js/main.js"></script>
 </body>
 </html>
