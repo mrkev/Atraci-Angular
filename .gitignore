@@ -1,6 +1,8 @@
 .DS_Store
 .sass-cache
 assets/css/main.css
+assets/sass/main.css
+assets/sass/main.css.map
 assets/js/main.js
 .idea
 npm-debug.log
