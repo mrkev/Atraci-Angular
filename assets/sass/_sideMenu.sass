@@ -1,0 +1,51 @@
+aside
+  @include calc(height, "100% - 60px")
+  width: $sideBarWidth
+  box-sizing: border-box
+  border-right: $separatorBorder
+
+  .searchBox
+    border-bottom: $separatorBorder
+
+    #searchInput
+      margin: 10px
+      padding: 5px
+      @include calc(width, "100% - 20px")
+      box-sizing: border-box
+      border: 1px solid $lightGray
+      border-radius: 10em
+      font-size: 16px
+
+  .sideMenu
+    @include calc(height, "100% - 290px")
+    overflow-y: auto
+    overflow-x: hidden
+
+    .sideMenuItem
+      font-size: 13px
+      font-family: Arial
+      padding: 10px
+      color: $mediumGray
+      font-weight: bold
+      cursor: pointer
+      &:hover,
+      &.active
+        background: $graysGradient
+        color: #fff
+      &.active
+        border-right:  5px solid $mediumGray
+      .fa
+        margin-right: 5px
+
+    .sideMenuSeparator
+      border-bottom: $separatorBorder
+
+  .videoPlayerBox
+    border-top: $separatorBorder
+    height: $sideBarWidth
+    width: $sideBarWidth
+    background: $lightGray
+    box-sizing: border-box
+    position: absolute
+    bottom: 0
+    left: 0

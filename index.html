@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Atraci</title>
+    <meta name="description" content="Free Music Streaming Player">
+    <meta name="author" content="Avihay Menahem">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/sass/main.css">
+</head>
+
+<body ng-app="AtraciApp">
+
+<header>
+    <div class="logo pullLeft">ATRACI</div>
+    <div class="mid pullLeft"></div>
+    <ul class="windowControls">
+        <li class="fa fa-minus"></li>
+        <li class="fa fa-expand"></li>
+        <li class="fa fa-close"></li>
+    </ul>
+</header>
+
+<aside class="pullLeft">
+    <div class="searchBox">
+        <input id="searchInput" type="text" placeholder="Search..."/>
+    </div>
+    <ul class="sideMenu">
+        <li class="sideMenuItem active">
+            <i class="fa fa-music"></i> Top Tracks
+        </li>
+        <li class="sideMenuItem">
+            <i class="fa fa-users"></i> Featured Artist
+        </li>
+        <li class="sideMenuItem">
+            <i class="fa fa-play"></i> Now Playing
+        </li>
+
+        <li class="sideMenuSeparator"></li>
+
+        <li class="sideMenuItem">
+            <i class="fa fa-history"></i> History
+        </li>
+        <li class="sideMenuItem">
+            <i class="fa fa-cog"></i> Settings
+        </li>
+        <li class="sideMenuItem">
+            <i class="fa fa-money"></i> Donate
+        </li>
+
+        <li class="sideMenuSeparator"></li>
+
+        <li class="sideMenuItem">
+            <i class="fa fa-plus-square"></i> New Playlist
+        </li>
+
+        <li class="sideMenuItem">
+            <i class="fa fa-align-justify"></i> Goa
+        </li>
+        <li class="sideMenuItem">
+            <i class="fa fa-align-justify"></i> Progressive
+        </li>
+        <li class="sideMenuItem">
+            <i class="fa fa-align-justify"></i> Psy
+        </li>
+        <li class="sideMenuItem">
+            <i class="fa fa-align-justify"></i> Hip-Hop
+        </li>
+        <li class="sideMenuItem">
+            <i class="fa fa-align-justify"></i> Drum n' Base
+        </li>
+    </ul>
+    <div class="videoPlayerBox"></div>
+</aside>
+
+<section class="pullLeft">
+    <div ng-include="'app/components/home/homeView.html'"></div>
+</section>
+
+<footer class="pullLeft">
+    <div class="timeProgression"><span class="currentProgress"></span></div>
+
+    <div class="playerActions">
+        <div class="mediaControls">
+            <div class="fa fa-fast-backward"></div>
+            <div class="fa fa-play"></div>
+            <div class="fa fa-fast-forward"></div>
+        </div>
+
+        <div class="coverArt">
+            <img src="http://www.lyrics007.com/images/cover_art/49/52/17" alt="Linkin Park - Somewhere I Belong"/>
+        </div>
+
+        <div class="trackDetails">
+            <div class="artistName">Linkin Park</div>
+            <div class="trackName">Somewhere I Belong</div>
+        </div>
+
+        <div class="playerControls">
+            <i class="fa fa-volume-up"></i>
+            <i class="fa fa-random"></i>
+            <i class="fa fa-repeat"></i>
+            <i class="fa fa-plus"></i>
+        </div>
+    </div>
+</footer>
+
+<script src="node_modules/angular/angular.min.js"></script>
+<script src="node_modules/angular-resource/angular-resource.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
