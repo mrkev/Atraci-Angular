@@ -4,6 +4,7 @@ section
   @include calc(height, #{"100% - " + $headerHeight +  " - " + $playerHeight});
   overflow-x: hidden;
   overflow-y: auto;
+  position: relative;
   .homeView
   {
     margin: 10px;
@@ -24,7 +25,7 @@ section
     height: 250px;
     display: block;
     background: #000000;
-    margin: 5px;
+    margin: 1px;
     float: left;
     position: relative;
     flex: 1 1 auto;
@@ -37,24 +38,54 @@ section
       background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.9) 47%,rgba(0,0,0,0.9) 100%);
       bottom: 0;
       color: #fff;
+      cursor: pointer;
+      transition: all 0.2s;
       span
       {
+        position: absolute;
         margin-left: 10px;
         display: block;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        &.artistName
-        {
-          margin-top: 92px;
-        }
+        bottom: 43px;
         &.trackName
         {
-          margin-top: 10px;
+          bottom: 2px;
           width: 230px;
           font-size: 20px;
           height: 30px;
         }
+      }
+    }
+    &:hover
+    {
+      .info
+      {
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.9) 100%,rgba(0,0,0,0.9) 100%);
+      }
+    }
+  }
+
+  .currentPageContainer
+  {
+    width: 100%;
+    transition: all 0.2s;
+    &.ng-leave
+    {
+      margin-left: 0;
+      &.ng-leave-active
+      {
+        margin-left: -100% !important;
+      }
+    }
+    &.ng-enter
+    {
+      margin-left: 100%;
+      &.ng-enter-active
+      {
+        margin-left: 0 !important;
       }
     }
   }

@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="node_modules/angular-resource/angular-resource.min.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
     <script src="assets/js/main.js"></script>
 </head>
 
@@ -17,7 +19,12 @@
 
 <header>
     <div class="logo pullLeft">ATRACI</div>
-    <div class="mid pullLeft"></div>
+    <div class="mid pullLeft">
+        <div class="searchBox">
+            <i class="fa fa-search"></i>
+            <input id="searchInput" type="text" placeholder="Search..."/>
+        </div>
+    </div>
     <ul class="windowControls" ng-controller="windowController">
         <li class="fa fa-minus" ng-click="minimizeWindow()"></li>
         <li class="fa fa-expand" ng-click="expandWindow()"></li>
@@ -26,60 +33,80 @@
 </header>
 
 <aside class="pullLeft">
-    <div class="searchBox">
-        <i class="fa fa-search"></i>
-        <input id="searchInput" type="text" placeholder="Search..."/>
-    </div>
     <ul class="sideMenu">
         <li class="sideMenuItem active">
-            <i class="fa fa-music"></i> Top Tracks
+            <a href="index.html#/home">
+                <i class="fa fa-music"></i> Top Tracks
+            </a>
         </li>
         <li class="sideMenuItem">
-            <i class="fa fa-users"></i> Featured Artist
+            <a href="index.html#/featured">
+                <i class="fa fa-users"></i> Featured Artist
+            </a>
         </li>
         <li class="sideMenuItem">
-            <i class="fa fa-play"></i> Now Playing
-        </li>
-
-        <li class="sideMenuSeparator"></li>
-
-        <li class="sideMenuItem">
-            <i class="fa fa-history"></i> History
-        </li>
-        <li class="sideMenuItem">
-            <i class="fa fa-cog"></i> Settings
-        </li>
-        <li class="sideMenuItem">
-            <i class="fa fa-money"></i> Donate
+            <a href="index.html#/nowPlaying">
+                <i class="fa fa-play"></i> Now Playing
+            </a>
         </li>
 
         <li class="sideMenuSeparator"></li>
 
         <li class="sideMenuItem">
-            <i class="fa fa-plus-square"></i> New Playlist
+            <a href="index.html#/history">
+                <i class="fa fa-history"></i> History
+            </a>
+        </li>
+        <li class="sideMenuItem">
+            <a href="index.html#/settings">
+                <i class="fa fa-cog"></i> Settings
+            </a>
+        </li>
+        <li class="sideMenuItem">
+            <a href="index.html#/donate">
+                <i class="fa fa-money"></i> Donate
+            </a>
+        </li>
+
+        <li class="sideMenuSeparator"></li>
+
+        <li class="sideMenuItem">
+            <a href="">
+                <i class="fa fa-plus-square"></i> New Playlist
+            </a>
         </li>
 
         <li class="sideMenuItem">
-            <i class="fa fa-align-justify"></i> Goa
+            <a href="">
+                <i class="fa fa-align-justify"></i> Goa
+            </a>
         </li>
         <li class="sideMenuItem">
-            <i class="fa fa-align-justify"></i> Progressive
+            <a href="">
+                <i class="fa fa-align-justify"></i> Progressive
+            </a>
         </li>
         <li class="sideMenuItem">
-            <i class="fa fa-align-justify"></i> Psy
+            <a href="">
+                <i class="fa fa-align-justify"></i> Psy
+            </a>
         </li>
         <li class="sideMenuItem">
-            <i class="fa fa-align-justify"></i> Hip-Hop
+            <a href="">
+                <i class="fa fa-align-justify"></i> Hip-Hop
+            </a>
         </li>
         <li class="sideMenuItem">
-            <i class="fa fa-align-justify"></i> Drum n' Base
+            <a href="">
+                <i class="fa fa-align-justify"></i> Drum n' Base
+            </a>
         </li>
     </ul>
     <div class="videoPlayerBox"></div>
 </aside>
 
 <section class="pullLeft">
-    <div ng-include="'app/components/home/homeView.html'"></div>
+    <div class="currentPageContainer" ng-view></div>
 </section>
 
 <footer class="pullLeft">

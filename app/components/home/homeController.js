@@ -1,5 +1,4 @@
-angularControllers
-    .directive('tracks', function(){
+app.directive('tracks', function(){
         return {
             restrict : 'E',
             replace: true,

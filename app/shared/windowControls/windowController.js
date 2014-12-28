@@ -1,4 +1,4 @@
-angularControllers.controller('windowController', function ($scope) {
+app.controller('windowController', function ($scope) {
     var gui = require('nw.gui'),
         win = gui.Window.get();
 

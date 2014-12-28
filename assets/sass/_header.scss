@@ -19,6 +19,33 @@ header
     font-size: 18px;
   }
 
+  .searchBox
+  {
+    position: relative;
+    .fa
+    {
+      position: absolute;
+      right: -5px;
+      top: 19px;
+      color: $mediumGray;
+      font-size: 12px;
+    }
+
+    #searchInput
+    {
+      margin: 5px;
+      padding: 5px;
+      box-sizing: border-box;
+      border: 0;
+      font-size: 20px;
+      width: 400px;
+      border-left: 3px solid $mediumGray;
+      font-family: $mainFontPack;
+      font-weight: 400;
+      background: transparent;
+    }
+  }
+
   .windowControls
   {
     position: absolute;
