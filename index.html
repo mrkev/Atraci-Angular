@@ -12,10 +12,11 @@
     <script src="node_modules/angular-resource/angular-resource.min.js"></script>
     <script src="node_modules/angular-animate/angular-animate.min.js"></script>
     <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <script src="assets/js/video.js"></script>
     <script src="assets/js/main.js"></script>
 </head>
 
-<body ng-app="AtraciApp">
+<body ng-app="AtraciApp" ngclock>
 
 <header>
     <div class="logo pullLeft">ATRACI</div>
@@ -102,15 +103,19 @@
             </a>
         </li>
     </ul>
-    <div class="videoPlayerBox"></div>
+    <div class="videoPlayerBox">
+        <video id="video_player" width="200" height="200" class="video-js"></video>
+    </div>
 </aside>
 
 <section class="pullLeft">
     <div class="currentPageContainer" ng-view></div>
 </section>
 
-<footer class="pullLeft">
-    <div class="timeProgression"><span class="currentProgress"></span></div>
+<footer class="pullLeft" ng-controller="playerController">
+    <div class="timeProgression">
+        <span class="currentProgress" ng-style="{ width : currentProgress }"></span>
+    </div>
 
     <div class="playerActions">
         <div class="mediaControls">
@@ -120,12 +125,12 @@
         </div>
 
         <div class="coverArt">
-            <img src="http://www.lyrics007.com/images/cover_art/49/52/17" alt="Linkin Park - Somewhere I Belong"/>
+            <img ng-src="{{ currentPlayingTrack.cover_url_medium }}"/>
         </div>
 
         <div class="trackDetails">
-            <div class="artistName">Linkin Park</div>
-            <div class="trackName">Somewhere I Belong</div>
+            <div class="artistName">{{ currentPlayingTrack.artist }}</div>
+            <div class="trackName">{{ currentPlayingTrack.title }}</div>
         </div>
 
         <div class="playerControls">

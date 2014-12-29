@@ -84,11 +84,12 @@ footer
     height: 5px;
     background: $lightGray;
     cursor: pointer;
+    transition: all 0.05s;
     .currentProgress
     {
       display: block;
       background: linear-gradient(to right, #a90329 0%,#eb2728 100%);
-      width: 60%;
+      width: 0;
       height: 100%;
       position: relative;
       &:after

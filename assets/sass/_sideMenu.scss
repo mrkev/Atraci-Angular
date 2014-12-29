@@ -54,5 +54,12 @@ aside
     position: absolute;
     bottom: 0;
     left: 0;
+    overflow: hidden;
+
+    .video-js, video
+    {
+      width:$sideBarWidth;
+      height: 200px;
+    }
   }
 }

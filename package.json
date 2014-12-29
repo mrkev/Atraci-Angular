@@ -11,7 +11,7 @@
     "width": 1096,
     "height": 700,
     "frame": false,
-    "toolbar": false
+    "toolbar": true
   },
   "single-instance": true,
   "dependencies" : {
@@ -24,7 +24,8 @@
     "universal-analytics" : "0.3.6",
     "node-uuid"   : "1.4.0",
     "request"     : "2.51.0",
-    "youtube-dl"  : "1.6.0",
+    "ytdl"  : "0.3.4",
+    "moment"  : "2.8.4",
     "gulp"        : "3.8.10",
     "gulp-sass" : "1.2.4",
     "gulp-concat" : "2.4.2",

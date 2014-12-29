@@ -1,4 +1,4 @@
-app.directive('tracks', function(){
+app.directive('tracks', function($rootScope){
         return {
             restrict : 'E',
             replace: true,
@@ -6,7 +6,12 @@ app.directive('tracks', function(){
             scope : {
                 items : '='
             },
-            templateUrl : "assets/templates/trackItem.html"
+            templateUrl : "assets/templates/trackItem.html",
+            link: function (scope, elements) {
+                scope.itemClick = function(trackObject){
+                    $rootScope.$broadcast("trackChangedEvent", {trackObject: trackObject });
+                }
+            }
         };
     })
     .controller('homeController', function ($scope, apiService) {
