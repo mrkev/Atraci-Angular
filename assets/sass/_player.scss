@@ -85,13 +85,25 @@ footer
     background: $lightGray;
     cursor: pointer;
     transition: all 0.05s;
-    .currentProgress
+    position: relative;
+    span
     {
       display: block;
-      background: linear-gradient(to right, #a90329 0%,#eb2728 100%);
       width: 0;
       height: 100%;
-      position: relative;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .currentLoadProgress
+    {
+      background: #8a8a8a;
+      z-index: 1;
+    }
+    .currentProgress
+    {
+      z-index: 2;
+      background: linear-gradient(to right, #a90329 0%,#eb2728 100%);
       &:after
       {
         content: "";

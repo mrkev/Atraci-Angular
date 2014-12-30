@@ -112,15 +112,16 @@
     <div class="currentPageContainer" ng-view></div>
 </section>
 
-<footer class="pullLeft" ng-controller="playerController">
-    <div class="timeProgression">
+<footer class="pullLeft" ng-controller="footerController">
+    <div class="timeProgression" ng-click="player.goToDuration($event)">
         <span class="currentProgress" ng-style="{ width : currentProgress }"></span>
+        <span class="currentLoadProgress" ng-style="{ width : currentLoadProgress }"></span>
     </div>
 
     <div class="playerActions">
         <div class="mediaControls">
             <div class="fa fa-fast-backward"></div>
-            <div class="fa fa-play"></div>
+            <div class="fa" ng-class="{ 'fa-play' : player.isPlaying, 'fa-pause' : !player.isPlaying }" ng-click="player.togglePlay()"></div>
             <div class="fa fa-fast-forward"></div>
         </div>
 
