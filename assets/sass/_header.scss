@@ -12,7 +12,7 @@ header
     width: $sideBarWidth;
     background: $mainRed;
     color: #fff;
-    text-align: center;
+    text-indent: 10px;
     line-height: $headerHeight;
     border-right: $separatorBorder;
     box-sizing: border-box;
@@ -39,7 +39,6 @@ header
       border: 0;
       font-size: 20px;
       width: 400px;
-      border-left: 3px solid $mediumGray;
       font-family: $mainFontPack;
       font-weight: 400;
       background: transparent;
