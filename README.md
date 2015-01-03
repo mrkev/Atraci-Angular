@@ -6,11 +6,19 @@ In order to start working on this repository, you will have to do the following 
   ```
   gem install compass
   ```
-- when finished, go inside the project, and run node package manager install:
+- when finished install compass, go inside the project, and run node package manager install:
   ```
   npm install
   ```
-- when finished, run gulp buildDev:
+- when finished install node modules, on gulpfile.js, change PLATFORM const to the platform you are working on:
   ```
-  gulp buildDev
+  const PLATFORM = "win64"; // all/osx32/osx64/win32/win64/linux32/linux64
+  ```
+- finally run the following command on cmd:
+  ```
+  gulp buildFirst
+  ```
+- NOTICE! the buildFirst command should run once only, then the command you will use will be:
+  ```
+  gulp default
   ```
