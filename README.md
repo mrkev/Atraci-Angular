@@ -1,6 +1,6 @@
 Refactoring Atraci to angular based application : https://github.com/Atraci/Atraci
 
-![screenshot](http://i.imgur.com/GSYHrqS.jpg)
+![screenshot](http://i.imgur.com/tAmAckB.jpg)
 
 In order to start working on this repository, you will have to do the following steps:
 - Download and install Ruby
