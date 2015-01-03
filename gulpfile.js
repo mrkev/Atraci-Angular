@@ -1,4 +1,4 @@
-const PLATFORM = "win64"; // Pass all/osx32/osx64/win32/win6/linux32/linux64
+const PLATFORM = "win64"; // Pass wanted platform all/osx32/osx64/win32/win6/linux32/linux64
 
 var gulp = require('gulp'),
     shell = require('gulp-shell'),
@@ -44,5 +44,5 @@ gulp.task('scssToCss', function () {
 gulp.task('minifyCss', function () {
     gulp.src('assets/css/main.css')
         .pipe(minifyCSS())
-        .pipe(gulp.dest(''));
+        .pipe(gulp.dest('assets/css'));
 });
