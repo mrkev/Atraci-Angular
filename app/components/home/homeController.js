@@ -7,9 +7,17 @@ app.directive('tracks', function($rootScope){
                 items : '='
             },
             templateUrl : "assets/templates/trackItem.html",
-            link: function (scope, elements) {
-                scope.itemClick = function(trackObject){
-                    $rootScope.$broadcast("trackChangedEvent", {trackObject: trackObject });
+            link: function ($scope, elements) {
+                $scope.currentHash = null;
+
+                $scope.itemClick = function(trackObj){
+                    $rootScope.$broadcast("trackChangedEvent", {trackObject: trackObj });
+                    $scope.currentHash = $scope.getHash(trackObj);
+                    $scope.apply();
+                };
+
+                $scope.getHash = function (trackObj) {
+                    return trackObj.artist + trackObj.title;
                 }
             }
         };
