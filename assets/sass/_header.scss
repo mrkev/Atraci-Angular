@@ -5,6 +5,7 @@ header
   font-family: $mainFontPack;
   box-sizing: border-box;
   border-bottom: $separatorBorder;
+  @include drag;
 
   .logo
   {
@@ -33,6 +34,7 @@ header
 
     #searchInput
     {
+      @include no-drag;
       margin: 5px;
       padding: 5px;
       box-sizing: border-box;
@@ -47,6 +49,7 @@ header
 
   .windowControls
   {
+    @include no-drag;
     position: absolute;
     right: 1px;
     top: 0;
