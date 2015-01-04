@@ -1,4 +1,4 @@
-var app = angular.module('AtraciApp', ['ngRoute'])
+var app = angular.module('AtraciApp', ['ngRoute', 'ngAnimate'])
     .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
         $routeProvider
             .when('/featured', {
