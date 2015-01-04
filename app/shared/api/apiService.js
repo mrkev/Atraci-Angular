@@ -13,7 +13,7 @@ app.factory('apiService', function ($http) {
                 },
                 'soundcloud' : {
                     'search' : "https://api.soundcloud.com/tracks.json?client_id=dead160b6295b98e4078ea51d07d4ed2&q=",
-                    'parser' : 'soundcloudResultsParser'
+                    'parser' : 'soundCloudResultsParser'
                 }
             }
         };
@@ -36,10 +36,7 @@ app.factory('apiService', function ($http) {
                         method : 'GET',
                         url: currentProviderSearchUrl
                     }).success(function (data) {
-                        if(data)
-                        {
-                            currentProviderParser(data);
-                        }
+                        if(data) currentProviderParser(data);
                     });
                 }(Api.providers[p]));
             }
@@ -48,32 +45,39 @@ app.factory('apiService', function ($http) {
         };
 
         Api.itunesResultsParser = function (data) {
-            //console.log("itunes", data);
-            return {};
+            var dataTracks = data.results;
+            for(var r in dataTracks)
+            {
+                var currentResult = dataTracks[r],
+                    imageMedium = currentResult.artworkUrl60 ? currentResult.artworkUrl60 : false,
+                    imageLarge = currentResult.artworkUrl100 ? currentResult.artworkUrl100 : false;
+
+                Api.addResult(currentResult.trackName, currentResult.artistName, imageMedium, imageLarge);
+            }
         };
 
         Api.lastFmResultsParser = function (data) {
             var dataTracks = data.results.trackmatches.track;
-
             for(var r in dataTracks)
             {
                 var currentResult = dataTracks[r],
-                    imageMedium = currentResult.image ? currentResult.image[1] : '',
-                    imageLarge = currentResult.image ? currentResult.image[currentResult.image.length -1] : '',
-                    result = {
-                        title : currentResult.name,
-                        artist : currentResult.artist,
-                        cover_url_medium :imageMedium,
-                        cover_url_large : imageLarge
-                    };
+                    currentImage = currentResult.image ? currentResult.image : false,
+                    imageMedium = currentImage ? currentImage[1] : false,
+                    imageLarge = currentImage ? currentImage[currentResult.image.length -1] : false;
 
-                Api.results[Api.getHash(result)] = result;
+                Api.addResult(currentResult.name, currentResult.artist, imageMedium, imageLarge);
             }
         };
 
-        Api.soundcloudResultsParser = function (data) {
-            //console.log("soundcloud", data);
-            return {};
+        Api.soundCloudResultsParser = function (data) {
+            for(var r in data)
+            {
+                var currentResult = data[r],
+                    currentImage = currentResult.artwork_url ? currentResult.artwork_url : false,
+                    nameExploded = currentResult.title.split("-");
+
+                Api.addResult(nameExploded[0], nameExploded[1], currentImage, currentImage);
+            }
         };
 
         Api.getHash = function (trackObj) {
@@ -86,6 +90,17 @@ app.factory('apiService', function ($http) {
                 obj1[key] = obj2[key];
             }
             return obj1;
+        };
+
+        Api.addResult = function(title, artist, coverMedium, coverLarge) {
+            var result = {
+                title : title,
+                artist : artist,
+                cover_url_medium : coverMedium,
+                cover_url_large : coverLarge
+            };
+
+            Api.results[Api.getHash(result)] = result;
         };
 
         return Api;
