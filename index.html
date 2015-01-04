@@ -16,7 +16,7 @@
     <script src="assets/js/main.js"></script>
 </head>
 
-<body ng-app="AtraciApp" ngclock ng-controller="MainAppController">
+<body ng-app="AtraciApp" ng-controller="MainAppController">
 
 <div id="modal">
     <div class="modalWrapper">
@@ -63,11 +63,6 @@
         <li class="sideMenuItem">
             <a href="index.html#/featured">
                 <i class="fa fa-users"></i> Featured Artist
-            </a>
-        </li>
-        <li class="sideMenuItem">
-            <a href="index.html#/nowPlaying">
-                <i class="fa fa-play"></i> Now Playing
             </a>
         </li>
         <li class="sideMenuItem" ng-show="searchTerm">
@@ -123,13 +118,14 @@
             </a>
         </li>
     </ul>
-    <div class="videoPlayerBox">
+    <div class="videoPlayerBox" ng-init="isExpanded=false" ng-class="{ expanded : isExpanded }" ng-dblclick="isExpanded=!isExpanded">
+        <i class="fa fa-expand" ng-click="isExpanded=!isExpanded"></i>
         <video id="video_player" width="200" height="200" class="video-js"></video>
     </div>
 </aside>
 
 <section class="pullLeft" ng-class="{ playerMax : isPlayerMax }">
-    <div class="currentPageContainer" ng-view></div>
+    <div class="currentPageContainer" ng-view ng-cloak></div>
 </section>
 
 <footer class="pullLeft" ng-controller="footerController">

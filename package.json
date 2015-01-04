@@ -22,6 +22,7 @@
     "universal-analytics" : "0.3.6",
     "node-uuid"   : "1.4.0",
     "request"     : "2.51.0",
+    "underscore"     : "1.7.0",
     "ytdl"  : "0.3.4",
     "moment"  : "2.8.4",
     "node-webkit-updater" : "0.2.3"

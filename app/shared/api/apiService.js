@@ -95,14 +95,6 @@ app.factory('apiService', function ($rootScope, $http) {
             }
         };
 
-        Api.objConcat = function (obj1, obj2) {
-            for(var key in obj2)
-            {
-                obj1[key] = obj2[key];
-            }
-            return obj1;
-        };
-
         Api.addResult = function(title, artist, coverMedium, coverLarge) {
             var result = {
                 title : title,

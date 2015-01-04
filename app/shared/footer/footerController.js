@@ -11,7 +11,6 @@ app.controller('footerController', function ($rootScope, $scope, playerService) 
         cover_url_medium : "",
         cover_url_large : ""
     };
-
     $scope.currentProgressPercent = "0";
     $scope.currentProgress = "00:00 / 00:00";
     $scope.currentLoadProgress = "0";
