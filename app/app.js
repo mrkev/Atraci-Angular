@@ -1,8 +1,18 @@
 var app = angular.module('AtraciApp', ['ngRoute'])
-    .config(['$routeProvider', '$locationProvider', function($routeProvider){
+    .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
         $routeProvider
             .when('/featured', {
-                'templateUrl' : 'app/components/featured/1232.html'
+                'templateUrl' : 'app/components/featured/featuredView.html'
+            })
+            .when('/donate', {
+                'templateUrl' : 'app/components/donate/donateView.html'
+            })
+            .when('/search/:string', {
+                'controller'  : 'searchController',
+                'templateUrl' : 'app/components/search/searchView.html'
+            })
+            .when('/settings', {
+                'templateUrl' : 'app/components/settings/settingsView.html'
             })
             .when('/home', {
                 'controller'  : 'homeController',

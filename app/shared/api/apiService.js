@@ -8,6 +8,7 @@ app.factory('apiService', function ($http) {
                     'parser' : 'itunesResultsParser'
                 },
                 'lastFm' : {
+                    'autocomplete' : "http://www.last.fm/search/autocomplete?q=",
                     'search' : "http://ws.audioscrobbler.com/2.0/?api_key=c513f3a2a2dad1d1a07021e181df1b1f&format=json&method=track.search&track=",
                     'parser' : 'lastFmResultsParser'
                 },
