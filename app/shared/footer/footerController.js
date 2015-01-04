@@ -4,6 +4,7 @@ app.controller('footerController', function ($rootScope, $scope, playerService) 
         moment = require('moment');
 
     $scope.tracks = {};
+    $scope.tracksHashes = [];
     $scope.currentPlayingTrack = {
         title : "No Track Selected",
         artist : "No Track Selected",
@@ -24,6 +25,7 @@ app.controller('footerController', function ($rootScope, $scope, playerService) 
     $scope.$on('trackChangedEvent', function(event, args){
         $scope.currentPlayingTrack = args.trackObject;
         $scope.tracks = args.tracks;
+        $scope.tracksHashes = Object.keys(args.tracks);
         $rootScope.setHash(args.trackObject);
         $scope.playlistWidth = (Object.keys($scope.tracks).length * 210) + "px";
 

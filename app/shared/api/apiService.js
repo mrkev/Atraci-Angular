@@ -20,14 +20,19 @@ app.factory('apiService', function ($rootScope, $http) {
         };
 
         Api.getTopTracks = function () {
-            return $http({
+            Api.results = {};
+            $http({
                 method: 'GET',
                 url: Api.providers.itunes.topTracks
+            }).success(function (data) {
+                Api.itunesTopResultsParser(data);
             });
+
+            return Api.results;
         };
 
         Api.search = function (str) {
-
+            Api.results = {};
             for(var p in Api.providers)
             {
                 (function e(provider) {
@@ -54,6 +59,15 @@ app.factory('apiService', function ($rootScope, $http) {
                     imageLarge = currentResult.artworkUrl100 ? currentResult.artworkUrl100 : false;
 
                 Api.addResult(currentResult.trackName, currentResult.artistName, imageMedium, imageLarge);
+            }
+        };
+
+        Api.itunesTopResultsParser = function (data) {
+            var dataTracks = data.feed.entry;
+            for(var r in dataTracks)
+            {
+                var currentResult = dataTracks[r];
+                Api.addResult(currentResult['im:name'].label, currentResult['im:artist'].label, currentResult['im:image'][1].label, currentResult['im:image'][2].label);
             }
         };
 
@@ -97,7 +111,9 @@ app.factory('apiService', function ($rootScope, $http) {
                 cover_url_large : coverLarge
             };
 
-            Api.results[$rootScope.getHash(result)] = result;
+            result.hash = $rootScope.getHash(result);
+
+            Api.results[result.hash] = result;
         };
 
         return Api;

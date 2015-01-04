@@ -4,7 +4,7 @@ app.controller("MainAppController", function($rootScope, $scope, $location){
     $scope.isPlayerMax = false;
     $rootScope.currentHash = null;
     $rootScope.getHash = function(trackObj){
-        return (trackObj.artist + trackObj.title).replace(/\s+/g, '').toLowerCase();
+        return (trackObj.artist + trackObj.title).replace(/\s+/g, '').replace(/\W/g, '').toLowerCase();
     };
 
     $rootScope.setHash = function (trackObj) {
