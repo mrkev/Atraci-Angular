@@ -49,6 +49,10 @@ app.factory('playerService', function () {
         },
         getLoadingProgress : function() {
             return this.ref.bufferedPercent() * 100;
+        },
+        setVolume : function (vol) {
+            this.ref.volume(Math.floor(vol) / 100);
+            return this;
         }
     };
 });

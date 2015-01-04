@@ -18,6 +18,13 @@ header
     border-right: $separatorBorder;
     box-sizing: border-box;
     font-size: 18px;
+
+    .version
+    {
+      font-size: 11px;
+      float: right;
+      margin-right: 10px;
+    }
   }
 
   .searchBox

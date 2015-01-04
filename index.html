@@ -36,7 +36,10 @@
 </div>
 
 <header>
-    <div class="logo pullLeft">ATRACI</div>
+    <div class="logo pullLeft">
+        ATRACI
+        <span class="version">v{{version}}</span>
+    </div>
     <div class="mid pullLeft">
         <div class="searchBox">
             <i class="fa fa-search"></i>
@@ -131,7 +134,7 @@
 
 <footer class="pullLeft" ng-controller="footerController">
     <div class="timeProgression" ng-click="player.goToDuration($event)">
-        <span class="currentProgress" ng-style="{ width : currentProgress }"></span>
+        <span class="currentProgress" ng-style="{ width : currentProgressPercent }"></span>
         <span class="currentLoadProgress" ng-style="{ width : currentLoadProgress }"></span>
     </div>
 
@@ -149,13 +152,19 @@
         <div class="trackDetails">
             <div class="artistName">{{ currentPlayingTrack.artist }}</div>
             <div class="trackName">{{ currentPlayingTrack.title }}</div>
+            <div class="progress">{{ currentProgress }}</div>
         </div>
 
         <div class="playerControls">
-            <i class="fa fa-volume-up"></i>
             <i class="fa fa-random"></i>
             <i class="fa fa-repeat"></i>
             <i class="fa fa-plus"></i>
+            <div class="volumeControlWrapper">
+                <i class="fa fa-volume-up"></i>
+                <div class="volumeControl" ng-click="setVolume($event)">
+                    <div class="volumeLevel" ng-style="{ width : currentVolume }"></div>
+                </div>
+            </div>
         </div>
     </div>
 </footer>

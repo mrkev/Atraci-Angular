@@ -10,8 +10,10 @@ app.controller('footerController', function ($scope, playerService) {
         cover_url_large : ""
     };
 
-    $scope.currentProgress = "0";
+    $scope.currentProgressPercent = "0";
+    $scope.currentProgress = "00:00 / 00:00";
     $scope.currentLoadProgress = "0";
+    $scope.currentVolume = "100%";
     $scope.currentHash = null;
     $scope.currentPlayingTrackString = $scope.currentPlayingTrack.artist + " - " + $scope.currentPlayingTrack.title;
     $scope.player = playerService;
@@ -57,7 +59,11 @@ app.controller('footerController', function ($scope, playerService) {
 
     playerService.ready(function(){
         this.on('timeupdate', function () {
-            $scope.currentProgress = (this.currentTime() / this.duration() * 100) + "%";
+            var trackDurationFormatted = moment(this.duration()*1000).format("m:ss"),
+                trackProgressFormatted = moment(this.currentTime()*1000).format("m:ss");
+
+            $scope.currentProgressPercent = (this.currentTime() / this.duration() * 100) + "%";
+            $scope.currentProgress = trackProgressFormatted + " / " + trackDurationFormatted;
             $scope.$apply();
         });
 
@@ -72,6 +78,12 @@ app.controller('footerController', function ($scope, playerService) {
 
     $scope.getVideo = function(options, cb){
         request(options, cb);
+    };
+
+    $scope.setVolume = function($event) {
+        var calculatedPercent = ($event.offsetX / $event.target.clientWidth) * 100;
+        $scope.currentVolume = calculatedPercent + "%";
+        playerService.setVolume(calculatedPercent);
     };
     
     $scope.getInfo = function (link, options, cb) {
