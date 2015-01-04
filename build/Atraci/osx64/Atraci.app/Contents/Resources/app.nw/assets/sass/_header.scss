@@ -1,0 +1,77 @@
+header
+{
+  height: $headerHeight;
+  overflow: hidden;
+  font-family: $mainFontPack;
+  box-sizing: border-box;
+  border-bottom: $separatorBorder;
+  @include drag;
+
+  .logo
+  {
+    height: 100%;
+    width: $sideBarWidth;
+    background: $mainRed;
+    color: #fff;
+    text-indent: 10px;
+    line-height: $headerHeight;
+    border-right: $separatorBorder;
+    box-sizing: border-box;
+    font-size: 18px;
+  }
+
+  .searchBox
+  {
+    position: relative;
+    .fa
+    {
+      position: absolute;
+      right: -5px;
+      top: 19px;
+      color: $mediumGray;
+      font-size: 12px;
+    }
+
+    #searchInput
+    {
+      @include no-drag;
+      margin: 5px;
+      padding: 5px;
+      box-sizing: border-box;
+      border: 0;
+      font-size: 20px;
+      width: 400px;
+      font-family: $mainFontPack;
+      font-weight: 400;
+      background: transparent;
+    }
+  }
+
+  .windowControls
+  {
+    @include no-drag;
+    position: absolute;
+    right: 1px;
+    top: 0;
+    width: 103px;
+    height: 25px;
+    overflow: hidden;
+    li
+    {
+      background: $lightGray;
+      color: $mediumGray;
+      width: 33px;
+      height: 25px;
+      line-height: 25px;
+      margin-right: 1px;
+      @extend .pullLeft;
+      cursor: pointer;
+      text-align: center;
+      &:hover
+      {
+        background: $mainRed;
+        color: #ffffff;
+      }
+    }
+  }
+}

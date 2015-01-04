@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Atraci</title>
+    <meta name="description" content="Free Music Streaming Player">
+    <meta name="author" content="Avihay Menahem">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-resource/angular-resource.min.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <script src="assets/js/video.js"></script>
+    <script src="assets/js/main.js"></script>
+</head>
+
+<body ng-app="AtraciApp" ngclock ng-controller="MainAppController">
+
+<div id="modal">
+    <div class="modalWrapper">
+        <div class="controls">
+            <i class="fa fa-close"></i>
+        </div>
+        <div class="header">
+            Title
+        </div>
+        <div class="content">
+            Content
+        </div>
+        <div class="footer">
+            Footer
+        </div>
+    </div>
+</div>
+
+<header>
+    <div class="logo pullLeft">ATRACI</div>
+    <div class="mid pullLeft">
+        <div class="searchBox">
+            <i class="fa fa-search"></i>
+            <input id="searchInput" type="text" ng-model="searchTerm" placeholder="Search..." ng-keydown="doSearch($event)"/>
+        </div>
+    </div>
+    <ul class="windowControls" ng-controller="windowController">
+        <li class="fa fa-minus" ng-click="minimizeWindow()"></li>
+        <li class="fa fa-expand" ng-click="expandWindow()"></li>
+        <li class="fa fa-close" ng-click="closeWindow()"></li>
+    </ul>
+</header>
+
+<aside class="pullLeft">
+    <ul class="sideMenu">
+        <li class="sideMenuItem active">
+            <a href="index.html#/home">
+                <i class="fa fa-music"></i> Top Tracks
+            </a>
+        </li>
+        <li class="sideMenuItem">
+            <a href="index.html#/featured">
+                <i class="fa fa-users"></i> Featured Artist
+            </a>
+        </li>
+        <li class="sideMenuItem">
+            <a href="index.html#/nowPlaying">
+                <i class="fa fa-play"></i> Now Playing
+            </a>
+        </li>
+        <li class="sideMenuItem" ng-show="searchTerm">
+            <a ng-href="index.html#/search/{{searchTerm}}">
+                <i class="fa fa-search"></i> Search
+            </a>
+        </li>
+
+        <li class="sideMenuSeparator"></li>
+
+        <li class="sideMenuItem">
+            <a href="index.html#/history">
+                <i class="fa fa-history"></i> History
+            </a>
+        </li>
+        <li class="sideMenuItem">
+            <a href="index.html#/settings">
+                <i class="fa fa-cog"></i> Settings
+            </a>
+        </li>
+        <li class="sideMenuItem">
+            <a href="index.html#/donate">
+                <i class="fa fa-money"></i> Donate
+            </a>
+        </li>
+
+        <li class="sideMenuSeparator"></li>
+
+        <li class="sideMenuItem">
+            <a href="">
+                <i class="fa fa-plus-square"></i> New Playlist
+            </a>
+        </li>
+
+        <li class="sideMenuItem">
+            <a href="">
+                <i class="fa fa-align-justify"></i> Progressive
+            </a>
+        </li>
+        <li class="sideMenuItem">
+            <a href="">
+                <i class="fa fa-align-justify"></i> Psy
+            </a>
+        </li>
+        <li class="sideMenuItem">
+            <a href="">
+                <i class="fa fa-align-justify"></i> Hip-Hop
+            </a>
+        </li>
+        <li class="sideMenuItem">
+            <a href="">
+                <i class="fa fa-align-justify"></i> Drum n' Base
+            </a>
+        </li>
+    </ul>
+    <div class="videoPlayerBox">
+        <video id="video_player" width="200" height="200" class="video-js"></video>
+    </div>
+</aside>
+
+<section class="pullLeft">
+    <div class="currentPageContainer" ng-view></div>
+</section>
+
+<footer class="pullLeft" ng-controller="footerController">
+    <div class="timeProgression" ng-click="player.goToDuration($event)">
+        <span class="currentProgress" ng-style="{ width : currentProgress }"></span>
+        <span class="currentLoadProgress" ng-style="{ width : currentLoadProgress }"></span>
+    </div>
+
+    <div class="playerActions">
+        <div class="mediaControls">
+            <div class="fa fa-fast-backward"></div>
+            <div class="fa" ng-class="{ 'fa-play' : player.isPlaying, 'fa-pause' : !player.isPlaying }" ng-click="player.togglePlay()"></div>
+            <div class="fa fa-fast-forward"></div>
+        </div>
+
+        <div class="coverArt">
+            <img ng-src="{{ currentPlayingTrack.cover_url_medium }}"/>
+        </div>
+
+        <div class="trackDetails">
+            <div class="artistName">{{ currentPlayingTrack.artist }}</div>
+            <div class="trackName">{{ currentPlayingTrack.title }}</div>
+        </div>
+
+        <div class="playerControls">
+            <i class="fa fa-volume-up"></i>
+            <i class="fa fa-random"></i>
+            <i class="fa fa-repeat"></i>
+            <i class="fa fa-plus"></i>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

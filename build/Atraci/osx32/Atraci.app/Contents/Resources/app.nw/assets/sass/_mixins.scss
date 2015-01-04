@@ -1,0 +1,16 @@
+@mixin calc($property, $expression)
+{
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+@mixin drag
+{
+  -webkit-app-region: drag;
+}
+
+@mixin no-drag
+{
+  -webkit-app-region: no-drag;
+}
+

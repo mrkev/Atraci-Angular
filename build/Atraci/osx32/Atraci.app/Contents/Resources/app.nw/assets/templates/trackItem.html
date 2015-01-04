@@ -1,0 +1,8 @@
+<div class="trackItems">
+    <div class="trackItem" ng-repeat="track in items" style="background-image:url('{{ track.cover_url_large }}')"  ng-class="{active: currentHash == getHash(track)}">
+        <div class="info" ng-click="itemClick(track)">
+            <span class="artistName">{{ track.artist }}</span>
+            <span class="trackName">{{ track.title }}</span>
+        </div>
+    </div>
+</div>

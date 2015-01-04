@@ -1,0 +1,356 @@
+@import url(http://fonts.googleapis.com/css?family=Oswald:400,300,700);
+* {
+  outline: none !important; }
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after {
+  content: '';
+  content: none; }
+
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/** Colors */
+/** Fonts */
+/** Sizes */
+/** Combinations */
+::-webkit-scrollbar {
+  width: 10px; }
+
+::-webkit-scrollbar-track {
+  background-color: #fff; }
+
+::-webkit-scrollbar-thumb {
+  background-color: #cfcdd0;
+  border-radius: 5em; }
+
+::-webkit-scrollbar-button {
+  height: 0; }
+
+html, body {
+  height: 100%;
+  overflow: hidden; }
+
+body {
+  background: #f8f8f8; }
+
+.pullLeft, header .windowControls li, footer {
+  float: left; }
+
+.pullRight {
+  float: right; }
+
+header {
+  height: 50px;
+  overflow: hidden;
+  font-family: "Oswald", "Arial";
+  box-sizing: border-box;
+  border-bottom: 1px solid #d5d5d5;
+  -webkit-app-region: drag; }
+  header .logo {
+    height: 100%;
+    width: 250px;
+    background: #eb2728;
+    color: #fff;
+    text-indent: 10px;
+    line-height: 50px;
+    border-right: 1px solid #d5d5d5;
+    box-sizing: border-box;
+    font-size: 18px; }
+  header .searchBox {
+    position: relative; }
+    header .searchBox .fa {
+      position: absolute;
+      right: -5px;
+      top: 19px;
+      color: #888;
+      font-size: 12px; }
+    header .searchBox #searchInput {
+      -webkit-app-region: no-drag;
+      margin: 5px;
+      padding: 5px;
+      box-sizing: border-box;
+      border: 0;
+      font-size: 20px;
+      width: 400px;
+      font-family: "Oswald", "Arial";
+      font-weight: 400;
+      background: transparent; }
+  header .windowControls {
+    -webkit-app-region: no-drag;
+    position: absolute;
+    right: 1px;
+    top: 0;
+    width: 103px;
+    height: 25px;
+    overflow: hidden; }
+    header .windowControls li {
+      background: #d5d5d5;
+      color: #888;
+      width: 33px;
+      height: 25px;
+      line-height: 25px;
+      margin-right: 1px;
+      cursor: pointer;
+      text-align: center; }
+      header .windowControls li:hover {
+        background: #eb2728;
+        color: #ffffff; }
+
+aside {
+  height: -webkit-calc(100% - 60px);
+  height: calc(100% - 60px);
+  width: 250px;
+  box-sizing: border-box;
+  border-right: 1px solid #d5d5d5; }
+  aside .sideMenu {
+    height: -webkit-calc(100% - 190px);
+    height: calc(100% - 190px);
+    overflow-y: auto;
+    overflow-x: hidden; }
+    aside .sideMenu .sideMenuItem {
+      padding: 10px;
+      cursor: pointer;
+      font-family: Arial;
+      font-size: 13px; }
+      aside .sideMenu .sideMenuItem a {
+        color: #888;
+        font-weight: bold;
+        text-decoration: none; }
+      aside .sideMenu .sideMenuItem:hover, aside .sideMenu .sideMenuItem.active {
+        background: linear-gradient(to right, #dddddd 1%, #c4c4c4 100%);
+        color: #fff; }
+      aside .sideMenu .sideMenuItem.active {
+        border-right: 5px solid #888; }
+      aside .sideMenu .sideMenuItem .fa {
+        margin-right: 5px; }
+    aside .sideMenu .sideMenuSeparator {
+      border-bottom: 1px solid #d5d5d5; }
+  aside .videoPlayerBox {
+    border-top: 1px solid #d5d5d5;
+    height: 200px;
+    width: 250px;
+    background: #d5d5d5;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    overflow: hidden; }
+    aside .videoPlayerBox .video-js, aside .videoPlayerBox video {
+      width: 250px;
+      height: 200px; }
+
+section {
+  width: -webkit-calc(100% - 250px);
+  width: calc(100% - 250px);
+  height: -webkit-calc(100% - 50px - 100px);
+  height: calc(100% - 50px - 100px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative; }
+  section .marginPage {
+    margin: 2px; }
+  section .trackItems {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between; }
+    section .trackItems .trackItem {
+      overflow: hidden;
+      background-size: cover !important;
+      background-repeat: no-repeat !important;
+      width: 200px;
+      height: 200px;
+      display: block;
+      background: #000000;
+      margin: 1px;
+      float: left;
+      position: relative;
+      flex: 1 1 auto; }
+      section .trackItems .trackItem .info {
+        font-family: "Oswald", "Arial";
+        position: absolute;
+        width: 100%;
+        height: 60%;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.9) 47%, rgba(0, 0, 0, 0.9) 100%);
+        bottom: 0;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.2s; }
+        section .trackItems .trackItem .info span {
+          position: absolute;
+          margin-left: 10px;
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          bottom: 43px; }
+          section .trackItems .trackItem .info span.trackName {
+            bottom: 2px;
+            width: 230px;
+            font-size: 20px;
+            height: 30px; }
+      section .trackItems .trackItem:hover .info, section .trackItems .trackItem.active .info {
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 100%, rgba(0, 0, 0, 0.9) 100%); }
+        section .trackItems .trackItem:hover .info::before, section .trackItems .trackItem.active .info::before {
+          background: url('../imgs/playIcon.png') no-repeat center center rgba(0, 0, 0, 0.2);
+          background-size: 50px;
+          width: 100px;
+          height: 100px;
+          margin: 0 auto;
+          content: "";
+          display: block;
+          padding-top: 100px; }
+  section .currentPageContainer {
+    width: 100%;
+    transition: all 0.2s; }
+    section .currentPageContainer.ng-leave {
+      margin-left: 0; }
+      section .currentPageContainer.ng-leave.ng-leave-active {
+        margin-left: -100% !important; }
+    section .currentPageContainer.ng-enter {
+      margin-left: 100%; }
+      section .currentPageContainer.ng-enter.ng-enter-active {
+        margin-left: 0 !important; }
+
+footer {
+  width: -webkit-calc(100% - 250px);
+  width: calc(100% - 250px);
+  height: 100px;
+  box-sizing: border-box;
+  border-top: 1px solid #d5d5d5;
+  position: relative; }
+  footer .playerActions {
+    margin: 10px;
+    overflow: hidden;
+    font-family: "Oswald", "Arial"; }
+    footer .playerActions .mediaControls {
+      float: left;
+      width: 150px;
+      text-align: center;
+      line-height: 75px; }
+      footer .playerActions .mediaControls .fa {
+        font-size: 26px;
+        cursor: pointer;
+        margin-right: 10px;
+        opacity: 0.3; }
+        footer .playerActions .mediaControls .fa:hover {
+          opacity: 0.7; }
+    footer .playerActions .coverArt {
+      height: 75px;
+      width: 75px;
+      overflow: hidden;
+      float: left;
+      margin-right: 15px; }
+      footer .playerActions .coverArt img {
+        width: 100%;
+        height: 100%; }
+    footer .playerActions .trackDetails {
+      margin-top: 13px;
+      float: left;
+      width: 450px; }
+      footer .playerActions .trackDetails .trackName {
+        margin-top: 5px;
+        font-size: 25px; }
+    footer .playerActions .playerControls {
+      text-align: right;
+      line-height: 75px;
+      float: right; }
+      footer .playerActions .playerControls .fa {
+        cursor: pointer;
+        font-size: 24px;
+        margin-right: 10px;
+        opacity: 0.3; }
+        footer .playerActions .playerControls .fa:hover {
+          opacity: 0.7; }
+  footer .timeProgression {
+    width: 100%;
+    height: 5px;
+    background: #d5d5d5;
+    cursor: pointer;
+    transition: all 0.05s;
+    position: relative; }
+    footer .timeProgression span {
+      display: block;
+      width: 0;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0; }
+    footer .timeProgression .currentLoadProgress {
+      background: #8a8a8a;
+      z-index: 1; }
+    footer .timeProgression .currentProgress {
+      z-index: 2;
+      background: linear-gradient(to right, #a90329 0%, #eb2728 100%); }
+      footer .timeProgression .currentProgress:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: -3px;
+        right: -3px;
+        width: 11px;
+        height: 11px;
+        background: #2d2d2d;
+        border-radius: 10em; }
+
+#modal {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+  position: absolute;
+  z-index: 10;
+  display: none; }
+  #modal .modalWrapper {
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 3px;
+    width: 500px;
+    margin-top: 100px;
+    box-shadow: 0 3px 10px 2px #000;
+    overflow: hidden;
+    position: relative; }
+    #modal .modalWrapper .controls {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      color: #888; }
+    #modal .modalWrapper .header, #modal .modalWrapper .footer {
+      padding: 10px;
+      height: 50px;
+      background: #d5d5d5;
+      color: #888;
+      font-family: "Oswald", "Arial";
+      line-height: 30px;
+      box-sizing: border-box; }
+    #modal .modalWrapper .content {
+      height: -webkit-calc(100% - 100px);
+      height: calc(100% - 100px);
+      margin: 10px;
+      font-family: "Arial";
+      font-size: 13px; }
