@@ -3,7 +3,8 @@ $mainBgColor : #f8f8f8;
 $mainRed: #eb2728;
 $lightGray: #d5d5d5;
 $mediumGray: #888;
-$graysGradient: linear-gradient(to right, #dddddd 1%,#c4c4c4 100%);
+$darkGray : #505050;
+$graysGradient: linear-gradient(to right, #ededed 1%,#dfdfdf 100%);
 
 /** Fonts */
 $mainFontPack : "Oswald", "Arial";
@@ -13,6 +14,7 @@ $mainFontPack : "Oswald", "Arial";
 $sideBarWidth: 250px;
 $headerHeight: 50px;
 $playerHeight: 100px;
+$playerOpenedHeight: 180px;
 
 
 /** Combinations */

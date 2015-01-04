@@ -16,11 +16,10 @@ aside
       padding: 10px;
       cursor: pointer;
       font-family: Arial;
-      font-size: 13px;
+      font-size: 12px;
       a
       {
         color: $mediumGray;
-        font-weight: bold;
         text-decoration: none;
       }
       &:hover, &.active
@@ -30,7 +29,12 @@ aside
       }
       &.active
       {
-        border-right:  5px solid $mediumGray;
+        border-left:  5px solid $mediumGray;
+        a
+        {
+          color: $darkGray;
+          font-weight: bold;
+        }
       }
       .fa
       {

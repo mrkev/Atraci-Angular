@@ -1,8 +1,9 @@
-app.controller('footerController', function ($scope, playerService) {
+app.controller('footerController', function ($rootScope, $scope, playerService) {
     var ytdl = require('ytdl'),
         request = require('request'),
         moment = require('moment');
 
+    $scope.tracks = {};
     $scope.currentPlayingTrack = {
         title : "No Track Selected",
         artist : "No Track Selected",
@@ -14,7 +15,7 @@ app.controller('footerController', function ($scope, playerService) {
     $scope.currentProgress = "00:00 / 00:00";
     $scope.currentLoadProgress = "0";
     $scope.currentVolume = "100%";
-    $scope.currentHash = null;
+    $scope.playlistWidth = 0;
     $scope.currentPlayingTrackString = $scope.currentPlayingTrack.artist + " - " + $scope.currentPlayingTrack.title;
     $scope.player = playerService;
 
@@ -22,7 +23,9 @@ app.controller('footerController', function ($scope, playerService) {
 
     $scope.$on('trackChangedEvent', function(event, args){
         $scope.currentPlayingTrack = args.trackObject;
-        $scope.currentHash = $scope.getHash(args.trackObject);
+        $scope.tracks = args.tracks;
+        $rootScope.setHash(args.trackObject);
+        $scope.playlistWidth = (Object.keys($scope.tracks).length * 210) + "px";
 
         $scope.getVideo({
             url : 'http://gdata.youtube.com/feeds/api/videos?alt=json&max-results=1&q=' + encodeURIComponent(args.trackObject.artist + ' - ' + args.trackObject.title),
@@ -71,10 +74,6 @@ app.controller('footerController', function ($scope, playerService) {
             $scope.currentLoadProgress = playerService.getLoadingProgress() + "%";
         });
     });
-
-    $scope.getHash = function(trackObject) {
-        return trackObject.title + "-" + trackObject.artist;
-    };
 
     $scope.getVideo = function(options, cb){
         request(options, cb);

@@ -1,4 +1,4 @@
-app.factory('apiService', function ($http) {
+app.factory('apiService', function ($rootScope, $http) {
         var Api = {
             'results' : {},
             'providers' : {
@@ -81,10 +81,6 @@ app.factory('apiService', function ($http) {
             }
         };
 
-        Api.getHash = function (trackObj) {
-            return (trackObj.artist + trackObj.title).replace(/\s+/g, '').toLowerCase();
-        };
-
         Api.objConcat = function (obj1, obj2) {
             for(var key in obj2)
             {
@@ -101,7 +97,7 @@ app.factory('apiService', function ($http) {
                 cover_url_large : coverLarge
             };
 
-            Api.results[Api.getHash(result)] = result;
+            Api.results[$rootScope.getHash(result)] = result;
         };
 
         return Api;
