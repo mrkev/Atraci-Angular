@@ -24,3 +24,6 @@ In order to start working on this repository, you will have to do the following 
   ```
   gulp default
   ```
+
+
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Atraci/Atraci-Angular?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
