@@ -1,4 +1,6 @@
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Atraci/Atraci-Angular)
+[![LICENSE](https://img.shields.io/badge/license-GNU-green.svg)]()
+[![Gitter](https://img.shields.io/badge/chat-gitter-ff69b4.svg)](https://gitter.im/Atraci/Atraci-Angular)
+[![STATE](https://img.shields.io/badge/state-alpha-blue.svg)]()
 
 Refactoring Atraci to angular based application : https://github.com/Atraci/Atraci
 
