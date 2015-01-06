@@ -1,7 +1,7 @@
 app.factory('playerService', function () {
     return {
         element : "video_player",
-        isPlaying : false,
+        isPlaying : true,
         ref : null,
         init: function(){
             this.ref = videojs(this.element, {
@@ -15,7 +15,6 @@ app.factory('playerService', function () {
             return this;
         },
         play : function () {
-            this.isPlaying = true;
             this.ref.play();
             return this;
         },
@@ -24,7 +23,7 @@ app.factory('playerService', function () {
             return this;
         },
         togglePlay : function(){
-            this.isPlaying ? this.play() : this.pause();
+            !this.isPlaying ? this.play() : this.pause();
             this.isPlaying = !this.isPlaying;
             return this;
         },
@@ -34,7 +33,9 @@ app.factory('playerService', function () {
         },
         playSource : function(src)
         {
-            this.ref.src(src).play();
+            this.setSrc(src);
+            this.play();
+            this.isPlaying = true;
             return this;
         },
         ready : function(obj) {

@@ -97,8 +97,8 @@ app.factory('apiService', function ($rootScope, $http) {
 
         Api.addResult = function(title, artist, coverMedium, coverLarge) {
             var result = {
-                title : title,
-                artist : artist,
+                title : title.replace(/ *\([^)]*\) */g, ""),
+                artist : artist.replace(/ *\([^)]*\) */g, ""),
                 cover_url_medium : coverMedium,
                 cover_url_large : coverLarge
             };

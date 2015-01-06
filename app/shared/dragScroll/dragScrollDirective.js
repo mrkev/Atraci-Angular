@@ -9,7 +9,8 @@ app.directive('dragscroll', function(){
 
             element.addEventListener('mousemove', function(e){
                 if(curDown === true){
-                    element.scrollLeft += (curXPos - e.pageX) / 40;
+                    console.log("eee", e);
+                    element.scrollLeft += (curXPos - e.pageX) / 5;
                 }
             });
 

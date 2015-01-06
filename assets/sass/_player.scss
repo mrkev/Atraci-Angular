@@ -6,6 +6,19 @@ footer
   box-sizing: border-box;
   border-top: $separatorBorder;
   position: relative;
+  transition: all 0.2s;
+
+  &.disabled
+  {
+    pointer-events: none;
+    .disabledBackground
+    {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+    }
+  }
 
   .togglePlaylistButton
   {
@@ -22,6 +35,7 @@ footer
     font-size: 14px;
     cursor: pointer;
     transition: all 0.2s;
+    z-index:13;
 
     &:hover
     {
@@ -36,7 +50,7 @@ footer
     $controlsCoverArtWidth : 85px;
     $controlsActionsWidth : 170px;
 
-    margin: 10px;
+    margin: 15px 10px 10px 10px;
     overflow: hidden;
     font-family: $mainFontPack;
 
@@ -129,11 +143,10 @@ footer
           margin-top: 5px;
           cursor: pointer;
 
-          .volumeLevel
+          &[value]::-webkit-progress-value
           {
+            appearance: none;
             background: $mainRed;
-            width: 100%;
-            height: 100%;
           }
         }
       }
@@ -158,7 +171,7 @@ footer
       {
         width: 200px;
         height: 60px;
-        margin-right: 10px;
+        margin-right: 3px;
         overflow: hidden;
         display: inline-block;
         background-size: 60px;
@@ -221,39 +234,13 @@ footer
     background: $lightGray;
     cursor: pointer;
     transition: all 0.05s;
-    position: relative;
+    position: absolute;
     margin-left: 3px;
     z-index: 11;
-    span
+
+    &[value]::-webkit-progress-value
     {
-      display: block;
-      width: 0;
-      height: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
-    }
-    .currentLoadProgress
-    {
-      background: #8a8a8a;
-      z-index: 1;
-    }
-    .currentProgress
-    {
-      z-index: 2;
       background: linear-gradient(to right, #a90329 0%,#eb2728 100%);
-      &:after
-      {
-        content: "";
-        display: block;
-        position: absolute;
-        top: -3px;
-        right: -3px;
-        width: 11px;
-        height: 11px;
-        background: #2d2d2d;
-        border-radius: 10em;
-      }
     }
   }
 }

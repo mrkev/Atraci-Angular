@@ -9,12 +9,12 @@ app.controller('footerController', function ($rootScope, $scope, playerService) 
         title : "No Track Selected",
         artist : "No Track Selected",
         cover_url_medium : "",
-        cover_url_large : ""
+        cover_url_large : "",
+        isDisabled : true
     };
-    $scope.currentProgressPercent = "0";
+    $scope.currentProgressPercent = 0;
     $scope.currentProgress = "00:00 / 00:00";
-    $scope.currentLoadProgress = "0";
-    $scope.currentVolume = "100%";
+    $scope.currentVolume = 100;
     $scope.playlistWidth = 0;
     $scope.currentPlayingTrackString = $scope.currentPlayingTrack.artist + " - " + $scope.currentPlayingTrack.title;
     $scope.player = playerService;
@@ -26,7 +26,7 @@ app.controller('footerController', function ($rootScope, $scope, playerService) 
         $scope.tracks = args.tracks;
         $scope.tracksHashes = Object.keys(args.tracks);
         $rootScope.setHash(args.trackObject);
-        $scope.playlistWidth = (Object.keys($scope.tracks).length * 210) + "px";
+        $scope.playlistWidth = (Object.keys($scope.tracks).length * 203) + "px";
 
         $scope.getVideo({
             url : 'http://gdata.youtube.com/feeds/api/videos?alt=json&max-results=1&q=' + encodeURIComponent(args.trackObject.artist + ' - ' + args.trackObject.title),
@@ -63,16 +63,11 @@ app.controller('footerController', function ($rootScope, $scope, playerService) 
 
     playerService.ready(function(){
         this.on('timeupdate', function () {
-            var trackDurationFormatted = moment(this.duration()*1000).format("m:ss"),
-                trackProgressFormatted = moment(this.currentTime()*1000).format("m:ss");
-
-            $scope.currentProgressPercent = (this.currentTime() / this.duration() * 100) + "%";
-            $scope.currentProgress = trackProgressFormatted + " / " + trackDurationFormatted;
+            var currentTime = this.currentTime(),
+                duration = this.duration();
+            $scope.currentProgressPercent = currentTime / duration * 100;
+            $scope.currentProgress = moment(currentTime*1000).format("m:ss") + " / " + moment(duration*1000).format("m:ss");
             $scope.$apply();
-        });
-
-        this.on('progress', function () {
-            $scope.currentLoadProgress = playerService.getLoadingProgress() + "%";
         });
     });
 
@@ -82,7 +77,7 @@ app.controller('footerController', function ($rootScope, $scope, playerService) 
 
     $scope.setVolume = function($event) {
         var calculatedPercent = ($event.offsetX / $event.target.clientWidth) * 100;
-        $scope.currentVolume = calculatedPercent + "%";
+        $scope.currentVolume = calculatedPercent;
         playerService.setVolume(calculatedPercent);
     };
     

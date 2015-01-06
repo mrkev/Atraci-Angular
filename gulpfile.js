@@ -9,14 +9,18 @@ var gulp = require('gulp'),
     gutil = require("gulp-util"),
     ignore = require("gulp-util");
 
+var Globals = {
+    "nwVersion" : "0.11.3"
+};
+
 gulp.task('default', ['buildDev']);
 gulp.task('buildFirst', ['scssToCss', 'minifyCss', 'concatJS', 'nwBuild', 'openApp']);
-gulp.task('buildDev', ['scssToCss', 'concatJS','openApp']);
+gulp.task('buildDev', ['scssToCss', 'concatJS', 'openApp']);
 
 gulp.task('nwBuild', function () {
     var nw = new nwBuilder({
-        version : '0.11.1',
-        files : ["./app/**", "./node_modules", "./assets/**", "./package.json", "./index.html", "!./assets/sass"],
+        version : Globals.nwVersion,
+        files : ["./app/**", "./node_modules", "./assets/**", "./package.json", "./index.html", "!./assets/sass/**"],
         platforms : (!PLATFORM || PLATFORM == 'all' ? ['osx32', 'osx64', 'linux32', 'linux64', 'win32', 'win64'] : [PLATFORM])
     }).on('log', function (msg) { gutil.log('node-webkit-builder', msg) });
     return nw.build().catch(function (err) {
@@ -25,7 +29,7 @@ gulp.task('nwBuild', function () {
 });
 
 gulp.task('openApp', function () {
-    gulp.src('cache/**/' + PLATFORM + '/nw.exe', {read: true})
+    gulp.src('cache/' + Globals.nwVersion + '/' + PLATFORM + '/nw.exe', {read: true})
         .pipe(shell(['<%= file.path %> ./']));
 });
 

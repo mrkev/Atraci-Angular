@@ -73,6 +73,13 @@ aside
       color: $lightGray;
       text-align: center;
       line-height: 20px;
+      transition: all 0.2s;
+
+      &:hover
+      {
+        color: #fff;
+        background: $mainRed;
+      }
     }
 
     .video-js, video
@@ -88,6 +95,12 @@ aside
       @include calc(width, #{"100% - " + $sideBarWidth});
       @include calc(height, #{"100% - " + $headerHeight + " - " + $playerHeight});
       z-index: 10;
+
+      &.playerMax
+      {
+        @include calc(height, #{"100% - " + $headerHeight + " - " + $playerOpenedHeight});
+        bottom : $playerOpenedHeight;
+      }
 
       .video-js, video
       {

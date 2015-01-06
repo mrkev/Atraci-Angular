@@ -55,17 +55,17 @@
 
 <aside class="pullLeft">
     <ul class="sideMenu">
-        <li class="sideMenuItem active">
+        <li class="sideMenuItem" ng-class="{ active : getLocationPath('/home') }">
             <a href="index.html#/home">
                 <i class="fa fa-music"></i> Top Tracks
             </a>
         </li>
-        <li class="sideMenuItem">
+        <li class="sideMenuItem" ng-class="{ active : getLocationPath('/featured') }">
             <a href="index.html#/featured">
                 <i class="fa fa-users"></i> Featured Artist
             </a>
         </li>
-        <li class="sideMenuItem" ng-show="searchTerm">
+        <li class="sideMenuItem" ng-show="searchTerm" ng-class="{ active : getLocationPath('/search/', true) }">
             <a ng-href="index.html#/search/{{searchTerm}}">
                 <i class="fa fa-search"></i> Search
             </a>
@@ -73,17 +73,17 @@
 
         <li class="sideMenuSeparator"></li>
 
-        <li class="sideMenuItem">
+        <li class="sideMenuItem" ng-class="{ active : getLocationPath('/history') }">
             <a href="index.html#/history">
                 <i class="fa fa-history"></i> History
             </a>
         </li>
-        <li class="sideMenuItem">
+        <li class="sideMenuItem" ng-class="{ active : getLocationPath('/settings') }">
             <a href="index.html#/settings">
                 <i class="fa fa-cog"></i> Settings
             </a>
         </li>
-        <li class="sideMenuItem">
+        <li class="sideMenuItem" ng-class="{ active : getLocationPath('/donate') }">
             <a href="index.html#/donate">
                 <i class="fa fa-money"></i> Donate
             </a>
@@ -91,34 +91,34 @@
 
         <li class="sideMenuSeparator"></li>
 
-        <li class="sideMenuItem">
+        <li class="sideMenuItem" ng-class="{ active : getLocationPath('/newplaylist') }">
             <a href="">
                 <i class="fa fa-plus-square"></i> New Playlist
             </a>
         </li>
 
-        <li class="sideMenuItem">
+        <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/progressive') }">
             <a href="">
                 <i class="fa fa-align-justify"></i> Progressive
             </a>
         </li>
-        <li class="sideMenuItem">
+        <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/psy') }">
             <a href="">
                 <i class="fa fa-align-justify"></i> Psy
             </a>
         </li>
-        <li class="sideMenuItem">
+        <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/hip-hop') }">
             <a href="">
                 <i class="fa fa-align-justify"></i> Hip-Hop
             </a>
         </li>
-        <li class="sideMenuItem">
+        <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/drumnbase') }">
             <a href="">
                 <i class="fa fa-align-justify"></i> Drum n' Base
             </a>
         </li>
     </ul>
-    <div class="videoPlayerBox" ng-init="isExpanded=false" ng-class="{ expanded : isExpanded }" ng-dblclick="isExpanded=!isExpanded">
+    <div class="videoPlayerBox" ng-init="isExpanded=false" ng-class="{ expanded : isExpanded, playerMax : isPlayerMax }" ng-dblclick="isExpanded=!isExpanded">
         <i class="fa fa-expand" ng-click="isExpanded=!isExpanded"></i>
         <video id="video_player" width="200" height="200" class="video-js"></video>
     </div>
@@ -128,20 +128,18 @@
     <div class="currentPageContainer" ng-view ng-cloak></div>
 </section>
 
-<footer class="pullLeft" ng-controller="footerController">
+<footer class="pullLeft" ng-controller="footerController" ng-class="{ disabled : currentPlayingTrack.isDisabled }">
+    <div class="disabledBackground" ng-show="currentPlayingTrack.isDisabled"></div>
     <div class="togglePlaylistButton" ng-click="togglePlaylist()" ng-show="playlistWidth">
         <i class="fa fa-align-justify"></i>
     </div>
 
-    <div class="timeProgression" ng-click="player.goToDuration($event)">
-        <span class="currentProgress" ng-style="{ width : currentProgressPercent }"></span>
-        <span class="currentLoadProgress" ng-style="{ width : currentLoadProgress }"></span>
-    </div>
+    <progress class="timeProgression" max="100" ng-value="currentProgressPercent" ng-click="player.goToDuration($event)"></progress>
 
     <div class="playerActions">
         <div class="mediaControls">
             <div class="fa fa-fast-backward"></div>
-            <div class="fa" ng-class="{ 'fa-play' : player.isPlaying, 'fa-pause' : !player.isPlaying }" ng-click="player.togglePlay()"></div>
+            <div class="fa" ng-class="{ 'fa-play' : !player.isPlaying, 'fa-pause' : player.isPlaying }" ng-click="player.togglePlay()"></div>
             <div class="fa fa-fast-forward"></div>
         </div>
 
@@ -161,9 +159,7 @@
             <i class="fa fa-plus"></i>
             <div class="volumeControlWrapper">
                 <i class="fa fa-volume-up"></i>
-                <div class="volumeControl" ng-click="setVolume($event)">
-                    <div class="volumeLevel" ng-style="{ width : currentVolume }"></div>
-                </div>
+                <progress class="volumeControl" max="100" ng-value="currentVolume" ng-click="setVolume($event)"></progress>
             </div>
         </div>
     </div>
