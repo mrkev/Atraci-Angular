@@ -231,7 +231,7 @@ footer
   .timeProgression
   {
     @include calc(width, "100% - 3px");
-    height: 5px;
+    height: 7px;
     background: $lightGray;
     cursor: pointer;
     transition: all 0.05s;

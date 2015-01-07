@@ -8,9 +8,8 @@ app.directive('tracks', function($rootScope){
         },
         templateUrl : "assets/templates/trackItem.html",
         link: function ($scope) {
-            $scope.itemClick = function(trackObj, tracks){
-                $rootScope.$broadcast("trackChangedEvent", { trackObject: trackObj, tracks: tracks });
-                $rootScope.setHash(trackObj);
+            $scope.itemClick = function($index, tracks){
+                $rootScope.$broadcast("trackChangedEvent", { index: $index, tracks: tracks });
             };
         }
     };

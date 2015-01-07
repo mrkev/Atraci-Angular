@@ -1,6 +1,7 @@
 app.factory('apiService', function ($rootScope, $http) {
         var Api = {
-            'results' : {},
+            'results' : [],
+            'resultsTemp' : {},
             'providers' : {
                 'itunes' : {
                     'search' : "http://itunes.apple.com/search?media=music&limit=100&entity=song&term=",
@@ -20,7 +21,7 @@ app.factory('apiService', function ($rootScope, $http) {
         };
 
         Api.getTopTracks = function () {
-            Api.results = {};
+            Api.results = [];
             $http({
                 method: 'GET',
                 url: Api.providers.itunes.topTracks
@@ -32,7 +33,7 @@ app.factory('apiService', function ($rootScope, $http) {
         };
 
         Api.search = function (str) {
-            Api.results = {};
+            Api.results = [];
             for(var p in Api.providers)
             {
                 (function e(provider) {
@@ -77,8 +78,8 @@ app.factory('apiService', function ($rootScope, $http) {
             {
                 var currentResult = dataTracks[r],
                     currentImage = currentResult.image ? currentResult.image : false,
-                    imageMedium = currentImage ? currentImage[1] : false,
-                    imageLarge = currentImage ? currentImage[currentResult.image.length -1] : false;
+                    imageMedium = currentImage ? currentImage[1]['#text'] : false,
+                    imageLarge = currentImage ? currentImage[currentResult.image.length -1]['#text'] : false;
 
                 Api.addResult(currentResult.name, currentResult.artist, imageMedium, imageLarge);
             }
@@ -95,17 +96,28 @@ app.factory('apiService', function ($rootScope, $http) {
             }
         };
 
+        Api.getRandomCover = function () {
+            var randomImages = ['blue', 'green', 'orange', 'pink', 'purple', 'red', 'turquise', 'yellow'];
+            return "assets/imgs/nocover/" + randomImages[Math.floor(Math.random()*randomImages.length)] + ".png";
+        };
+
         Api.addResult = function(title, artist, coverMedium, coverLarge) {
+            var randomCover = Api.getRandomCover();
             var result = {
-                title : title.replace(/ *\([^)]*\) */g, ""),
-                artist : artist.replace(/ *\([^)]*\) */g, ""),
-                cover_url_medium : coverMedium,
-                cover_url_large : coverLarge
+                title : title ? title.replace(/ *\([^)]*\) */g, "") : "Unknown",
+                artist : artist ? artist.replace(/ *\([^)]*\) */g, "") : "Unknown",
+                cover_url_medium : (coverMedium ? coverMedium : randomCover),
+                cover_url_large : (coverLarge ? coverLarge : randomCover)
             };
 
             result.hash = $rootScope.getHash(result);
 
-            Api.results[result.hash] = result;
+            if(!Api.resultsTemp[result.hash])
+            {
+                result.index = Api.results.length;
+                Api.resultsTemp[result.hash] = true;
+                Api.results.push(result);
+            }
         };
 
         return Api;
