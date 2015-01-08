@@ -1,8 +1,6 @@
 app.factory('spotifyService', function ($http) {
     var Spotify = {
         baseURL : "https://api.spotify.com/v1/",
-        clientID : "d70cc4ebc8134b3286bac66a579a4c43",
-        clientSecret : "0d06d79bc0094517b692defb05233748",
         methods : {
             "SEARCH" : "search",
             "ARTIST" : 'artists'
