@@ -44,6 +44,7 @@ app.controller('footerController', function ($rootScope, $scope, playerService, 
     });
 
     $scope.playTrack = function (index) {
+        playerService.pause();
         $scope.currentPlayingTrack = $scope.tracks[index];
         $rootScope.setHash($scope.currentPlayingTrack);
         $scope.getVideo({

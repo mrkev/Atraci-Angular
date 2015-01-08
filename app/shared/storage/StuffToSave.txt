@@ -1,0 +1,11 @@
+- Volume
+- Last Played Track
+- Repeat
+- Shuffle
+- SearchesHistory
+- IsExpanded
+- LastPlaylist
+- Settings.ShowNotifications
+- Settings.VideoQuality
+- Settings.Language
+- Settings.Theme

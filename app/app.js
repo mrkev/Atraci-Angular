@@ -2,6 +2,7 @@ var app = angular.module('AtraciApp', ['ngRoute', 'ngAnimate', 'angular-loading-
     .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
         $routeProvider
             .when('/featured', {
+                'controller'  : 'featuredController',
                 'templateUrl' : 'app/components/featured/featuredView.html'
             })
             .when('/donate', {

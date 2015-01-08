@@ -13,19 +13,23 @@ aside
 
     .sideMenuItem
     {
-      padding: 10px;
       cursor: pointer;
-      font-family: Arial;
-      font-size: 12px;
+      font-family: "Open Sans";
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 600;
+      -webkit-font-smoothing: antialiased;
       a
       {
         color: $mediumGray;
         text-decoration: none;
+        padding: 13px;
+        width: 100%;
+        display: block;
       }
       &:hover, &.active
       {
         background: $graysGradient;
-        color: #fff;
       }
       &.active
       {

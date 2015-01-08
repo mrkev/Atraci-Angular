@@ -42,12 +42,12 @@
     </div>
     <div class="mid pullLeft">
         <div class="searchBox">
-            <input id="searchInput" type="text" ng-model="searchTerm" placeholder="Search..." ng-keydown="doSearch($event)"/>
+            <input id="searchInput" type="text" ng-model="searchTerm" placeholder="Search..." ng-keydown="doSearch($event)" autoCompleteSearch searchQuery="{{ searchTerm }}"/>
         </div>
     </div>
     <ul class="windowControls" ng-controller="windowController">
         <li class="fa fa-minus" ng-click="minimizeWindow()"></li>
-        <li class="fa fa-expand" ng-click="expandWindow()"></li>
+        <li class="fa fa-plus" ng-click="expandWindow()"></li>
         <li class="fa fa-close" ng-click="closeWindow()"></li>
     </ul>
 </header>

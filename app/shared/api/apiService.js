@@ -1,4 +1,4 @@
-app.factory('apiService', function ($rootScope, $http) {
+app.factory('apiService', function ($rootScope, $http, spotifyService) {
         var Api = {
             'results' : [],
             'resultsTemp' : {},
@@ -49,6 +49,18 @@ app.factory('apiService', function ($rootScope, $http) {
             }
 
             return Api.results;
+        };
+
+        Api.artist = function (name, callback) {
+            spotifyService.artist(name, function (data) {
+                if (data.artists && data.artists.items.length) {
+                    var artist = data.artists.items[0];
+                    callback(artist);
+                }
+                else {
+                    console.log("NotFound: ", data);
+                }
+            });
         };
 
         Api.itunesResultsParser = function (data) {

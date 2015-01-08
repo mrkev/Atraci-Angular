@@ -62,22 +62,21 @@ header
     right: 1px;
     top: 0;
     width: 103px;
-    height: 25px;
+    height: 50px;
     overflow: hidden;
     li
     {
-      background: $lightGray;
       color: $mediumGray;
       width: 33px;
-      height: 25px;
-      line-height: 25px;
+      height: 50px;
+      line-height: 50px;
       margin-right: 1px;
       @extend .pullLeft;
       cursor: pointer;
       text-align: center;
       &:hover
       {
-        background: $mainRed;
+        background: $lightGray;
         color: #ffffff;
       }
     }
