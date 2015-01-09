@@ -187,4 +187,73 @@ section
     }
 
   }
+
+  .albumItems
+  {
+    margin: 10px;
+    .albumItem
+    {
+      display: block;
+      overflow: hidden;
+      padding: 10px;
+      background: lighten($lightGray, 10%);
+      margin-bottom: 10px;
+      border: 1px solid $lightGray;
+
+      .albumCover
+      {
+        margin-right: 10px;
+        overflow: hidden;
+        width: 100px;
+        float: left;
+
+        img
+        {
+          width: 100px;
+          height: 100px;
+        }
+      }
+
+      .albumInfo
+      {
+        float: left;
+        width: calc(100% - 110px);
+
+        .name
+        {
+          font-family: "Open Sans";
+          font-weight: 600;
+          font-size: 20px;
+          color: darken($lightGray, 10%);
+          margin-bottom: 10px;
+          cursor: pointer;
+
+          &:hover
+          {
+            color: darken($lightGray, 25%);
+          }
+        }
+
+        .tracksList
+        {
+          .trackName
+          {
+            font-family: "Open Sans";
+            font-weight: 600;
+            font-size: 15px;
+            padding: 5px 10px;
+            color: darken($lightGray, 15%);
+            cursor: pointer;
+
+            &:hover
+            {
+              color: #fff;
+              background: $lightGray;
+            }
+          }
+        }
+      }
+
+    }
+  }
 }

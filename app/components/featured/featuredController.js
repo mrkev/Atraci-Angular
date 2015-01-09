@@ -1,15 +1,14 @@
 app.controller('featuredController', function ($scope, apiService) {
     $scope.artist = {
+        id : null,
         imageCover : null,
         imageSmall : null,
-        name : null
+        name : null,
+        albums : []
     };
-    apiService.artist("Katy Perry", function (artist) {
-        $scope.artist = {
-            imageCover : artist.images[0].url,
-            imageSmall : artist.images[2].url,
-            name : artist.name
-        }
 
+
+    apiService.getArtistWithFullAlbum("Katy Perry", function (data) {
+        $scope.artist = data;
     });
 });

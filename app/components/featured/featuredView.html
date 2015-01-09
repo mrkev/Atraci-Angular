@@ -3,6 +3,7 @@
     <div class="name">{{ artist.name }}</div>
     <div class="smallImage" ng-style="{ 'background-image' : 'url(' + artist.imageSmall + ')' }"></div>
 </div>
-<div class="marginPage">
 
+<div class="marginPage">
+    <albums items="artist.albums"></albums>
 </div>

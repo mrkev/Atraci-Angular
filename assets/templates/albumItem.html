@@ -1,0 +1,13 @@
+<div class="albumItems">
+    <div class="albumItem" ng-repeat="album in items">
+        <div class="albumCover">
+            <img ng-src="{{ album.image }}" alt=""/>
+        </div>
+        <div class="albumInfo">
+            <div class="name" ng-click="searchAlbum(album)">{{ album.name }}</div>
+            <ul class="tracksList" ng-repeat="track in album.tracks">
+                <li class="trackName" ng-click="searchItem(track)">{{ track.trackNumber + ". " + track.name }}</li>
+            </ul>
+        </div>
+    </div>
+</div>

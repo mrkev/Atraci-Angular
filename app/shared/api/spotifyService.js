@@ -3,7 +3,8 @@ app.factory('spotifyService', function ($http) {
         baseURL : "https://api.spotify.com/v1/",
         methods : {
             "SEARCH" : "search",
-            "ARTIST" : 'artists'
+            "ARTIST" : 'artists',
+            "ALBUM" : 'albums'
         }
     };
 
@@ -17,6 +18,18 @@ app.factory('spotifyService', function ($http) {
         this.request(this.methods.SEARCH, { q : name, type : 'artist' }, function (data) {
             callback(data);
         });
+    };
+
+    Spotify.artistAlbums = function (artistID, callback) {
+        this.request(this.methods.ARTIST + "/" + artistID + "/albums", { album_type : "album", limit : 50, market : "US" }, function (data) {
+            callback(data);
+        });
+    };
+
+    Spotify.albumTracks = function (albumID, callback) {
+        this.request(this.methods.ALBUM + "/" + albumID + "/tracks", { limit : 50 }, function (data) {
+            callback(data);
+        })
     };
 
     Spotify.request = function (method, params, callback) {

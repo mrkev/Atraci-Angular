@@ -58,8 +58,89 @@ app.factory('apiService', function ($rootScope, $http, spotifyService) {
                     callback(artist);
                 }
                 else {
-                    console.log("NotFound: ", data);
+                    console.log("NotFound: (artist) ", data);
                 }
+            });
+        };
+
+        Api.getAlbumsByArtistID = function (artistID, callback) {
+            spotifyService.artistAlbums(artistID, function (data) {
+                if(data.items)
+                {
+                    callback(data.items);
+                }
+                else
+                {
+                    console.log("NotFound: (artist album) ", data);
+                }
+            });
+        };
+
+        Api.getTracksByAlbumID = function (albumID, callback) {
+            spotifyService.albumTracks(albumID, function (data) {
+                if(data.items)
+                {
+                    callback(data.items);
+                }
+                else
+                {
+                    console.log("NotFound: (album tracks) ", data);
+                }
+            });
+        };
+
+        Api.getArtistWithFullAlbum = function (name, callback) {
+            var self = this,
+                artistObj = {};
+            self.artist("Katy Perry", function (artist) {
+                artistObj = {
+                    id : artist.id,
+                    imageCover : artist.images[0].url,
+                    imageSmall : artist.images[2].url,
+                    name : artist.name,
+                    albums : []
+                };
+
+                self.getAlbumsByArtistID(artistObj.id, function (albums) {
+                    var albumsKeys = {};
+                    for(var i=0;i<albums.length;i++)
+                    {
+                        var album = albums[i],
+                            albumNameHashed = album.name.replace(/\s*\(.*?\)\s*/g, '').replace(/\W/g, '').toLowerCase();
+
+                        if(!albumsKeys[albumNameHashed])
+                        {
+                            albumsKeys[albumNameHashed] = true;
+                            var albumObj = {
+                                id : album.id,
+                                name : album.name,
+                                image : album.images[0]["url"],
+                                artist : artistObj.name,
+                                tracks : []
+                            };
+
+                            (function(albumObj){
+                                self.getTracksByAlbumID(albumObj.id, function (tracks) {
+                                    for(var x=0;x<tracks.length;x++)
+                                    {
+                                        var track = tracks[x];
+                                        albumObj.tracks.push({
+                                            id: track.id,
+                                            name : track.name,
+                                            artist : artistObj.name,
+                                            trackNumber : track.track_number,
+                                            duration : track.duration_ms
+                                        });
+                                    }
+                                    artistObj.albums.push(albumObj);
+                                });
+                            })(albumObj);
+                        }
+                    }
+
+                    callback(artistObj);
+                });
+
             });
         };
 
