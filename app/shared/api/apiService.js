@@ -22,6 +22,7 @@ app.factory('apiService', function ($rootScope, $http, spotifyService) {
 
         Api.getTopTracks = function () {
             Api.results = [];
+            Api.resultsTemp = {};
             $http({
                 method: 'GET',
                 url: Api.providers.itunes.topTracks
@@ -34,6 +35,7 @@ app.factory('apiService', function ($rootScope, $http, spotifyService) {
 
         Api.search = function (str) {
             Api.results = [];
+            Api.resultsTemp = {};
             for(var p in Api.providers)
             {
                 (function e(provider) {
