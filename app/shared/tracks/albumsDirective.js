@@ -9,7 +9,7 @@ app.directive('albums', function($location){
         templateUrl : "assets/templates/albumItem.html",
         link: function (scope) {
             scope.searchItem = function (trackItem) {
-                searchItem(trackItem.artist + " " + trackItem.name);
+                searchItem(trackItem.artist + " - " + trackItem.name);
             };
 
             scope.searchAlbum = function (albumObj) {

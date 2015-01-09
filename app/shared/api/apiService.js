@@ -7,7 +7,7 @@ app.factory('apiService', function ($rootScope, $http, spotifyService) {
                     'search' : "http://itunes.apple.com/search?media=music&limit=100&entity=song&term=",
                     'topTracks' : "http://itunes.apple.com/rss/topsongs/limit=100/explicit=true/json",
                     'parser' : 'itunesResultsParser'
-                },
+                }/**,
                 'lastFm' : {
                     'autocomplete' : "http://www.last.fm/search/autocomplete?q=",
                     'search' : "http://ws.audioscrobbler.com/2.0/?api_key=c513f3a2a2dad1d1a07021e181df1b1f&format=json&method=track.search&track=",
@@ -16,7 +16,7 @@ app.factory('apiService', function ($rootScope, $http, spotifyService) {
                 'soundcloud' : {
                     'search' : "https://api.soundcloud.com/tracks.json?client_id=dead160b6295b98e4078ea51d07d4ed2&q=",
                     'parser' : 'soundCloudResultsParser'
-                }
+                }**/
             }
         };
 
