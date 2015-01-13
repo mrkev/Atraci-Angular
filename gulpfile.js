@@ -20,7 +20,7 @@ gulp.task('buildDev', ['scssToCss', 'concatJS', 'openApp']);
 gulp.task('nwBuild', function () {
     var nw = new nwBuilder({
         version : Globals.nwVersion,
-        files : ["./app/**", "./node_modules", "./assets/**", "./package.json", "./index.html", "!./assets/sass/**"],
+        files : ["./app/**", "./node_modules", "./assets/**", "./package.json", "./index.html", "!./assets/sass/**", "./node_modules/angular/angular.min.js", "./node_modules/angular-animate/angular-animate.min.js", "./node_modules/angular-resource/angular-resource.min.js", "./node_modules/angular-route/angular-route.min.js", "./node_modules/moment/min/moment.min.js", "./node_modules/request/request.js", "./node_modules/ytdl/index.js", "./node_modules/underscore/underscore-min.js"],
         platforms : (!PLATFORM || PLATFORM == 'all' ? ['osx32', 'osx64', 'linux32', 'linux64', 'win32', 'win64'] : [PLATFORM])
     }).on('log', function (msg) { gutil.log('node-webkit-builder', msg) });
     return nw.build().catch(function (err) {
