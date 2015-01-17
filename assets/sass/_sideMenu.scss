@@ -5,55 +5,70 @@ aside
   box-sizing: border-box;
   border-right: $separatorBorder;
 
-  .sideMenu
+  .sideMenuWrapper
   {
     @include calc(height, "100% - 190px");
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
 
-    .sideMenuItem
+    .sideMenu
     {
-      cursor: pointer;
-      font-family: "Open Sans";
-      font-size: 11px;
-      text-transform: uppercase;
-      font-weight: 600;
-      -webkit-font-smoothing: antialiased;
-      a
+
+      &.main
       {
-        color: $mediumGray;
-        text-decoration: none;
-        padding: 13px;
-        width: 100%;
-        display: block;
+        height: 230px;
       }
-      &:hover, &.active
+
+      &.playlists
       {
-        background: $graysGradient;
+        overflow-y: auto;
+        overflow-x: hidden;
+        @include calc(height, "100% - 220px");
       }
-      &.active
+
+      .sideMenuItem
       {
-        border-left: 8px solid $mediumGray;
+        cursor: pointer;
+        font-family: "Open Sans";
+        font-size: 11px;
+        text-transform: uppercase;
+        font-weight: 600;
+        -webkit-font-smoothing: antialiased;
         a
         {
-          color: $mainRed;
-          font-weight: bold;
+          color: $mediumGray;
+          text-decoration: none;
+          padding: 13px;
+          width: 100%;
+          display: block;
         }
+        &:hover, &.active
+        {
+          background: $graysGradient;
+        }
+        &.active
+        {
+          border-left: 8px solid $mediumGray;
+          a
+          {
+            color: $mainRed;
+            font-weight: bold;
+          }
 
+          .fa
+          {
+            color: $mainRed;
+          }
+        }
         .fa
         {
-          color: $mainRed;
+          margin-right: 5px;
         }
       }
-      .fa
-      {
-        margin-right: 5px;
-      }
-    }
 
-    .sideMenuSeparator
-    {
-      border-bottom: $separatorBorder;
+      .sideMenuSeparator
+      {
+        border-bottom: $separatorBorder;
+      }
     }
   }
 

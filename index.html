@@ -54,70 +54,94 @@
 </header>
 
 <aside class="pullLeft">
-    <ul class="sideMenu">
-        <li class="sideMenuItem" ng-class="{ active : getLocationPath('/home') }">
-            <a href="index.html#/home">
-                <i class="fa fa-music"></i> Top Tracks
-            </a>
-        </li>
-        <li class="sideMenuItem" ng-class="{ active : getLocationPath('/featured') }">
-            <a href="index.html#/featured">
-                <i class="fa fa-users"></i> Featured Artist
-            </a>
-        </li>
-        <li class="sideMenuItem" ng-show="searchTerm" ng-class="{ active : getLocationPath('/search/', true) }">
-            <a ng-href="index.html#/search/{{searchTerm}}">
-                <i class="fa fa-search"></i> Search
-            </a>
-        </li>
+    <div class="sideMenuWrapper">
+        <ul class="sideMenu main">
+            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/home') }">
+                <a href="index.html#/home">
+                    <i class="fa fa-music"></i> Top Tracks
+                </a>
+            </li>
+            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/featured') }">
+                <a href="index.html#/featured">
+                    <i class="fa fa-users"></i> Featured Artist
+                </a>
+            </li>
+            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/search/', true) }">
+                <a ng-href="index.html#/search/{{searchTerm}}">
+                    <i class="fa fa-search"></i> Search
+                </a>
+            </li>
 
-        <li class="sideMenuSeparator"></li>
+            <li class="sideMenuSeparator"></li>
 
-        <li class="sideMenuItem" ng-class="{ active : getLocationPath('/history') }">
-            <a href="index.html#/history">
-                <i class="fa fa-history"></i> History
-            </a>
-        </li>
-        <li class="sideMenuItem" ng-class="{ active : getLocationPath('/settings') }">
-            <a href="index.html#/settings">
-                <i class="fa fa-cog"></i> Settings
-            </a>
-        </li>
-        <li class="sideMenuItem" ng-class="{ active : getLocationPath('/donate') }">
-            <a href="index.html#/donate">
-                <i class="fa fa-money"></i> Donate
-            </a>
-        </li>
+            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/history') }">
+                <a href="index.html#/history">
+                    <i class="fa fa-history"></i> History
+                </a>
+            </li>
+            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/settings') }">
+                <a href="index.html#/settings">
+                    <i class="fa fa-cog"></i> Settings
+                </a>
+            </li>
+            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/donate') }">
+                <a href="index.html#/donate">
+                    <i class="fa fa-money"></i> Donate
+                </a>
+            </li>
 
-        <li class="sideMenuSeparator"></li>
+            <li class="sideMenuSeparator"></li>
+        </ul>
 
-        <li class="sideMenuItem" ng-class="{ active : getLocationPath('/newplaylist') }">
-            <a href="">
-                <i class="fa fa-plus-square"></i> New Playlist
-            </a>
-        </li>
+        <ul class="sideMenu playlists">
+            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/newplaylist') }">
+                <a href="">
+                    <i class="fa fa-plus-square"></i> New Playlist
+                </a>
+            </li>
 
-        <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/progressive') }">
-            <a href="">
-                <i class="fa fa-align-justify"></i> Progressive
-            </a>
-        </li>
-        <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/psy') }">
-            <a href="">
-                <i class="fa fa-align-justify"></i> Psy
-            </a>
-        </li>
-        <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/hip-hop') }">
-            <a href="">
-                <i class="fa fa-align-justify"></i> Hip-Hop
-            </a>
-        </li>
-        <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/drumnbase') }">
-            <a href="">
-                <i class="fa fa-align-justify"></i> Drum n' Base
-            </a>
-        </li>
-    </ul>
+            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/progressive') }">
+                <a href="">
+                    <i class="fa fa-align-justify"></i> Progressive
+                </a>
+            </li>
+            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/psy') }">
+                <a href="">
+                    <i class="fa fa-align-justify"></i> Psy
+                </a>
+            </li>
+            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/hip-hop') }">
+                <a href="">
+                    <i class="fa fa-align-justify"></i> Hip-Hop
+                </a>
+            </li>
+            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/drumnbase') }">
+                <a href="">
+                    <i class="fa fa-align-justify"></i> Drum n' Base
+                </a>
+            </li>
+            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/progressive') }">
+                <a href="">
+                    <i class="fa fa-align-justify"></i> Progressive
+                </a>
+            </li>
+            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/psy') }">
+                <a href="">
+                    <i class="fa fa-align-justify"></i> Psy
+                </a>
+            </li>
+            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/hip-hop') }">
+                <a href="">
+                    <i class="fa fa-align-justify"></i> Hip-Hop
+                </a>
+            </li>
+            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/drumnbase') }">
+                <a href="">
+                    <i class="fa fa-align-justify"></i> Drum n' Base
+                </a>
+            </li>
+        </ul>
+    </div>
     <div class="videoPlayerBox" ng-init="isExpanded=false" ng-class="{ expanded : isExpanded, playerMax : isPlayerMax }" ng-dblclick="isExpanded=!isExpanded">
         <i class="fa fa-expand" ng-click="isExpanded=!isExpanded"></i>
         <video id="video_player" width="200" height="200" class="video-js"></video>
