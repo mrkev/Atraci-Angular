@@ -1,4 +1,4 @@
-app.controller('footerController', function ($rootScope, $scope, playerService, storageService) {
+app.controller('footerController', function ($rootScope, $scope, playerService, storageService, DBService) {
     var request = require('request'),
         moment = require('moment'),
         Youtube = require("youtube-api"),
@@ -28,6 +28,7 @@ app.controller('footerController', function ($rootScope, $scope, playerService, 
         $scope.tracksHashes = Object.keys(args.tracks);
         $scope.playlistWidth = (Object.keys($scope.tracks).length * 203) + "px";
         $scope.playTrack(args.index);
+        DBService.InsertNewHistory($scope.tracks[args.index]);
     });
 
     playerService.ready(function(){
