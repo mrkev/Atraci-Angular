@@ -1,7 +1,8 @@
 app.controller('footerController', function ($rootScope, $scope, playerService, storageService) {
-    var ytdl = require('ytdl'),
-        request = require('request'),
-        moment = require('moment');
+    var request = require('request'),
+        moment = require('moment'),
+        Youtube = require("youtube-api"),
+        YoutubeDL = require('youtube-dl');
 
     $scope.tracks = [];
     $scope.tracksHashes = [];
@@ -49,31 +50,13 @@ app.controller('footerController', function ($rootScope, $scope, playerService, 
         $rootScope.setHash($scope.currentPlayingTrack);
         $scope.getVideo($scope.currentPlayingTrack.artist + ' - ' + $scope.currentPlayingTrack.title, function (error, data, videoId) {
 
-            $scope.getInfo(videoId, { downloadURL : true }, function (err, info) {
-                if(err)
-                {
-                    console.log(err);
-                    return false;
-                }
-
-                var streamUrls = [],
-                    itagPriorities = [85,43,82];
-
-                for(var f in info.formats)
-                {
-                    var currentFormat = info.formats[f];
-                    streamUrls[currentFormat.itag] = currentFormat.url;
-                }
-
-                for(var it in itagPriorities)
-                    if(streamUrls[itagPriorities[it]])
-                        playerService.playSource(streamUrls[itagPriorities[it]]);
-            })
+            $scope.getInfo(videoId, ['--max-quality=43'], function (err, info) {
+                playerService.playSource(info.url);
+            });
         })
     };
 
     $scope.getVideo = function(name, cb){
-        var Youtube = require("youtube-api");
         Youtube.authenticate({
             type : "key",
             key  : "AIzaSyC6UnNP6_Axc4IOhKKp46zmhF2e-nP4rvQ"
@@ -96,7 +79,7 @@ app.controller('footerController', function ($rootScope, $scope, playerService, 
     };
 
     $scope.getInfo = function (link, options, cb) {
-        ytdl.getInfo(link, options, cb);
+        YoutubeDL.getInfo(link, options, cb);
     };
 
     $scope.goToNext = function () {
