@@ -33,11 +33,16 @@ aside
       }
       &.active
       {
-        border-left:  5px solid $mediumGray;
+        border-left: 8px solid $mediumGray;
         a
         {
-          color: $darkGray;
+          color: $mainRed;
           font-weight: bold;
+        }
+
+        .fa
+        {
+          color: $mainRed;
         }
       }
       .fa

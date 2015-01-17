@@ -5,25 +5,24 @@ header
   font-family: $mainFontPack;
   box-sizing: border-box;
   border-bottom: $separatorBorder;
+  background: url('../imgs/logo_bg.png') no-repeat left $mainRed;
   @include drag;
 
   .logo
   {
     height: 100%;
     width: $sideBarWidth;
-    background: url('../imgs/logo_bg.png') no-repeat center;
     color: #fff;
     text-indent: 10px;
     line-height: $headerHeight;
-    border-right: $separatorBorder;
     box-sizing: border-box;
     font-size: 18px;
 
     .version
     {
       font-size: 11px;
-      float: right;
-      margin-right: 10px;
+      margin-left: 10px;
+      opacity: 0.5;
     }
   }
 
@@ -33,25 +32,32 @@ header
     .fa
     {
       position: absolute;
-      right: -5px;
-      top: 19px;
-      color: $mediumGray;
+      right: 9px;
+      top: 14px;
+      color: $mainRed;
       font-size: 12px;
     }
 
     #searchInput
     {
       @include no-drag;
-      margin: 5px;
-      padding: 5px;
-      box-sizing: border-box;
-      border: 0;
-      font-size: 20px;
-      width: 400px;
+      padding: 2px 10px;
+      font-size: 15px;
+      width: 300px;
       font-family: $mainFontPack;
       font-weight: 400;
-      background: transparent;
-      color: $mediumGray;
+      background: white;
+      transition: all 0.3s;
+      border: 0;
+      box-sizing: border-box;
+      border-radius: 10em;
+      margin-top: 7px;
+      color: $mainRed;
+
+      &::-webkit-input-placeholder
+      {
+        color: $mainRed;
+      }
     }
   }
 
@@ -59,25 +65,25 @@ header
   {
     @include no-drag;
     position: absolute;
-    right: 1px;
+    right: -1px;
     top: 0;
     width: 103px;
     height: 50px;
     overflow: hidden;
     li
     {
-      color: $mediumGray;
+      color: #fff;
       width: 33px;
-      height: 50px;
-      line-height: 50px;
-      margin-right: 1px;
+      height: $headerHeight;
+      line-height: $headerHeight;
+      margin-left: 1px;
       @extend .pullLeft;
       cursor: pointer;
       text-align: center;
       &:hover
       {
-        background: $lightGray;
-        color: #ffffff;
+        background: #fff;
+        color: $mainRed;
       }
     }
   }

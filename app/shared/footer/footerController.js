@@ -47,17 +47,9 @@ app.controller('footerController', function ($rootScope, $scope, playerService, 
         playerService.pause();
         $scope.currentPlayingTrack = $scope.tracks[index];
         $rootScope.setHash($scope.currentPlayingTrack);
-        $scope.getVideo({
-            url : 'http://gdata.youtube.com/feeds/api/videos?alt=json&max-results=1&q=' + encodeURIComponent($scope.currentPlayingTrack.artist + ' - ' + $scope.currentPlayingTrack.title),
-            json : true
-        }, function (error, response, data) {
-            if(!data.feed.entry)
-            {
-                console.log("Not Found");
-                return false;
-            }
+        $scope.getVideo($scope.currentPlayingTrack.artist + ' - ' + $scope.currentPlayingTrack.title, function (error, data, videoId) {
 
-            $scope.getInfo(data.feed.entry[0].link[0].href, { downloadURL : true }, function (err, info) {
+            $scope.getInfo(videoId, { downloadURL : true }, function (err, info) {
                 if(err)
                 {
                     console.log(err);
@@ -80,8 +72,20 @@ app.controller('footerController', function ($rootScope, $scope, playerService, 
         })
     };
 
-    $scope.getVideo = function(options, cb){
-        request(options, cb);
+    $scope.getVideo = function(name, cb){
+        var Youtube = require("youtube-api");
+        Youtube.authenticate({
+            type : "key",
+            key  : "AIzaSyC6UnNP6_Axc4IOhKKp46zmhF2e-nP4rvQ"
+        });
+
+        Youtube.search.list({
+            q : name,
+            part : "snippet"
+        }, function (err, data) {
+            var returnUrl = "http://www.youtube.com/watch?v=" +data.items[0].id.videoId;
+            cb(err, data, returnUrl);
+        });
     };
 
     $scope.setVolume = function($event) {
@@ -90,7 +94,7 @@ app.controller('footerController', function ($rootScope, $scope, playerService, 
         playerService.setVolume(calculatedPercent);
         storageService.set();
     };
-    
+
     $scope.getInfo = function (link, options, cb) {
         ytdl.getInfo(link, options, cb);
     };
