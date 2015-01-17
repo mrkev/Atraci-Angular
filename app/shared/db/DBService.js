@@ -19,7 +19,7 @@ app.factory('DBService', function () {
         };
 
         self.InsertNewHistory = function (trackObject, callback) {
-            self.db.HISTORY.find({ "hash" : trackObject.hash }).exec(function (err, data) {
+            self.db.HISTORY.findOne({ "hash" : trackObject.hash }).exec(function (err, data) {
                 if(!data.length)
                 {
                     self.db.HISTORY.insert(JSON.parse(angular.toJson(trackObject)), function (err, NewObj) {
@@ -28,7 +28,7 @@ app.factory('DBService', function () {
                             console.error("HistoryDAO Error: ", err);
                             return false;
                         }
-                        callback(NewObj);
+                        if(callback) callback(NewObj);
                         console.info("new History Object Created", NewObj);
                     });
                 }

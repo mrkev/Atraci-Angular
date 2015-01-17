@@ -11,7 +11,7 @@
     "width": 1096,
     "height": 700,
     "frame": false,
-    "toolbar": true,
+    "toolbar": false,
     "transparent": true,
     "icon": "assets/imgs/ico.png"
   },

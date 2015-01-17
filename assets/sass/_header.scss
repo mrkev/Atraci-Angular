@@ -4,7 +4,6 @@ header
   overflow: hidden;
   font-family: $mainFontPack;
   box-sizing: border-box;
-  border-bottom: $separatorBorder;
   background: url('../imgs/logo_bg.png') no-repeat left $mainRed;
   @include drag;
 

@@ -28,7 +28,6 @@ app.controller('footerController', function ($rootScope, $scope, playerService, 
         $scope.tracksHashes = Object.keys(args.tracks);
         $scope.playlistWidth = (Object.keys($scope.tracks).length * 203) + "px";
         $scope.playTrack(args.index);
-        DBService.InsertNewHistory($scope.tracks[args.index]);
     });
 
     playerService.ready(function(){
@@ -50,8 +49,8 @@ app.controller('footerController', function ($rootScope, $scope, playerService, 
         $scope.currentPlayingTrack = $scope.tracks[index];
         $rootScope.setHash($scope.currentPlayingTrack);
         $scope.getVideo($scope.currentPlayingTrack.artist + ' - ' + $scope.currentPlayingTrack.title, function (error, data, videoId) {
-
             $scope.getInfo(videoId, ['--max-quality=43'], function (err, info) {
+                DBService.InsertNewHistory($scope.currentPlayingTrack);
                 playerService.playSource(info.url);
             });
         })
