@@ -7,7 +7,7 @@ app.directive('tracks', function($rootScope){
             items : '='
         },
         templateUrl : "assets/templates/trackItem.html",
-        link: function ($scope) {
+        link: function ($scope, elements, attrs) {
             $scope.itemClick = function($index, tracks){
                 $rootScope.$broadcast("trackChangedEvent", { index: $index, tracks: tracks });
             };

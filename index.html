@@ -8,12 +8,12 @@
     <meta name="author" content="Avihay Menahem">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/main.css">
+
+    <script src="https://vjs.zencdn.net/4.11/video.js" async></script>
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="node_modules/angular-resource/angular-resource.min.js"></script>
     <script src="node_modules/angular-animate/angular-animate.min.js"></script>
     <script src="node_modules/angular-route/angular-route.min.js"></script>
-    <script src="https://vjs.zencdn.net/4.11/video.js"></script>
-    <script src="assets/js/main.js"></script>
 </head>
 
 <body ng-app="AtraciApp" ng-controller="MainAppController">
@@ -95,49 +95,14 @@
 
         <ul class="sideMenu playlists">
             <li class="sideMenuItem" ng-class="{ active : getLocationPath('/newplaylist') }">
-                <a href="">
+                <a href="index.html#/newplaylist">
                     <i class="fa fa-plus-square"></i> New Playlist
                 </a>
             </li>
 
-            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/progressive') }">
+            <li class="sideMenuItem" ng-repeat="playlist in playlists" ng-class="{ active : getLocationPath('/playlist/' + playlist.name) }">
                 <a href="">
-                    <i class="fa fa-align-justify"></i> Progressive
-                </a>
-            </li>
-            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/psy') }">
-                <a href="">
-                    <i class="fa fa-align-justify"></i> Psy
-                </a>
-            </li>
-            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/hip-hop') }">
-                <a href="">
-                    <i class="fa fa-align-justify"></i> Hip-Hop
-                </a>
-            </li>
-            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/drumnbase') }">
-                <a href="">
-                    <i class="fa fa-align-justify"></i> Drum n' Base
-                </a>
-            </li>
-            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/progressive') }">
-                <a href="">
-                    <i class="fa fa-align-justify"></i> Progressive
-                </a>
-            </li>
-            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/psy') }">
-                <a href="">
-                    <i class="fa fa-align-justify"></i> Psy
-                </a>
-            </li>
-            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/hip-hop') }">
-                <a href="">
-                    <i class="fa fa-align-justify"></i> Hip-Hop
-                </a>
-            </li>
-            <li class="sideMenuItem" ng-class="{ active : getLocationPath('/playlist/drumnbase') }">
-                <a href="">
-                    <i class="fa fa-align-justify"></i> Drum n' Base
+                    <i class="fa fa-align-justify"></i> {{ playlist.name }}
                 </a>
             </li>
         </ul>
@@ -192,5 +157,7 @@
         <tracks items="tracks" ng-style="{ width : playlistWidth }"></tracks>
     </div>
 </footer>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/move.min.js"></script>
 </body>
 </html>

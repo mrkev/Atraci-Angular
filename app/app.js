@@ -19,6 +19,10 @@ var app = angular.module('AtraciApp', ['ngRoute', 'ngAnimate', 'angular-loading-
                 'controller'  : 'historyController',
                 'templateUrl' : 'app/components/history/historyView.html'
             })
+            .when('/newplaylist', {
+                'controller'  : 'newPlaylistController',
+                'templateUrl' : 'app/components/playlist/newPlaylistView.html'
+            })
             .when('/home', {
                 'controller'  : 'homeController',
                 'templateUrl' : 'app/components/home/homeView.html'

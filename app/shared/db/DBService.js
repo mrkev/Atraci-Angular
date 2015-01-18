@@ -11,6 +11,31 @@ app.factory('DBService', function () {
             TRACK : new self.Datastore({ filename : self.dbFolder + "/track.adb" , autoload : true})
         };
 
+        /** PlaylistDAO Queries */
+        self.getAllPlaylists = function (callback) {
+            self.db.PLAYLIST.find({}).exec(function (err, data) {
+                callback(data);
+            });
+        };
+
+        self.InsertNewPlaylist = function (playlistObj, callback) {
+            self.db.PLAYLIST.findOne({ "hash" : playlistObj.name }).exec(function (err, data) {
+                if(data === null)
+                {
+                    self.db.PLAYLIST.insert(JSON.parse(angular.toJson(playlistObj)), function (err, NewObj) {
+                        if(err)
+                        {
+                            console.error("PlaylistDAO Error: ", err);
+                            return false;
+                        }
+                        console.info("new PlaylistDAO Object Created", NewObj);
+                        if(callback) callback(NewObj);
+                    });
+                }
+            });
+        };
+        /** End PlaylistDAO Queries */
+
         /** HistoryDAO Queries */
         self.getAllHistory = function (callback) {
             self.db.HISTORY.find({}).exec(function (err, data) {
