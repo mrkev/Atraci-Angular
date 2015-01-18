@@ -36,6 +36,32 @@ app.factory('DBService', function () {
         };
         /** End PlaylistDAO Queries */
 
+        /** TracksDAO Queries */
+        self.getAllPlaylistTracks = function (pid, callback) {
+            self.db.TRACK.find({ playlist : pid }).exec(function (err, data) {
+                callback(data);
+            });
+        };
+
+        self.InsertNewPlaylistTrack = function (trackObject, pid, callback) {
+            self.db.TRACK.findOne({ "hash" : trackObject.hash, pid : pid }).exec(function (err, data) {
+                if(data === null)
+                {
+                    trackObject.pid = pid;
+                    self.db.TRACK.insert(JSON.parse(angular.toJson(trackObject)), function (err, NewObj) {
+                        if(err)
+                        {
+                            console.error("TracksDAO Error: ", err);
+                            return false;
+                        }
+                        console.info("new TracksDAO Object Created", NewObj);
+                        if(callback) callback(NewObj);
+                    });
+                }
+            });
+        };
+        /** End TracksDAO Queries */
+
         /** HistoryDAO Queries */
         self.getAllHistory = function (callback) {
             self.db.HISTORY.find({}).exec(function (err, data) {

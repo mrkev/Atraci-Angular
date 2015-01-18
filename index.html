@@ -100,8 +100,8 @@
                 </a>
             </li>
 
-            <li class="sideMenuItem" ng-repeat="playlist in playlists" ng-class="{ active : getLocationPath('/playlist/' + playlist.name) }">
-                <a href="">
+            <li class="sideMenuItem" ng-repeat="playlist in playlists" ng-class="{ active : getLocationPath('/playlist/' + playlist._id) }">
+                <a href="index.html#/playlist/{{ playlist._id }}">
                     <i class="fa fa-align-justify"></i> {{ playlist.name }}
                 </a>
             </li>
