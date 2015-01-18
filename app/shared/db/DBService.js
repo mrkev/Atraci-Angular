@@ -38,7 +38,7 @@ app.factory('DBService', function () {
 
         /** TracksDAO Queries */
         self.getAllPlaylistTracks = function (pid, callback) {
-            self.db.TRACK.find({ playlist : pid }).exec(function (err, data) {
+            self.db.TRACK.find({ pid : pid }).exec(function (err, data) {
                 callback(data);
             });
         };
