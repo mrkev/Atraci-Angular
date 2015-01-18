@@ -20,7 +20,7 @@ app.factory('DBService', function () {
 
         self.InsertNewHistory = function (trackObject, callback) {
             self.db.HISTORY.findOne({ "hash" : trackObject.hash }).exec(function (err, data) {
-                if(!data.length)
+                if(data === null)
                 {
                     self.db.HISTORY.insert(JSON.parse(angular.toJson(trackObject)), function (err, NewObj) {
                         if(err)
