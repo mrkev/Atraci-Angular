@@ -5,9 +5,9 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     nwBuilder = require("node-webkit-builder"),
     gutil = require("gulp-util"),
-    os = require("os");
-
-
+    os = require("os"),
+    path = require("path");
+var clean = require('gulp-clean');
 
 /**
  * Get the platform we're on. 
@@ -25,6 +25,27 @@ var currentPlatform = function() {
             return null;
     }
 };
+
+var nwpath = function(platform) {
+    if (!platform) platform = PLATFORM;
+
+    var part = path.resolve('./cache/' + Globals.nwVersion + '/' + platform)
+                   .replace(' ', '\\ ')
+
+    switch (currentPlatform()) {
+        case 'linux64':
+        case 'linux32':
+            return part + '/nw'
+        case 'osx64': 
+        case 'osx32':
+            return part + '/node-webkit.app/Contents/MacOS/node-webkit' 
+        case 'win64': 
+        case 'win32': 
+            return part + '/nw.exe'
+        default:
+            return null;
+    }
+}
 
 
 
@@ -51,10 +72,14 @@ gulp.task('nwBuild', function () {
     });
 });
 
-gulp.task('openApp', function () {
-    gulp.src('cache/' + Globals.nwVersion + '/' + PLATFORM + '/nw.exe', {read: true})
-        .pipe(shell(['<%= file.path %> ./']));
+gulp.task('clean', function () {  
+  return gulp.src('build', {read: false})
+    .pipe(clean());
 });
+
+gulp.task('openApp', shell.task([
+  nwpath() + ' ./'
+]));
 
 gulp.task('concatJS', function () {
     gulp.src(['app/**/*.js', 'assets/js/**/*.js', '!assets/js/main.js'])

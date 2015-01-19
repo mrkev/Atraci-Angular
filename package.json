@@ -10,8 +10,8 @@
   "window": {
     "width": 1096,
     "height": 700,
-    "frame": false,
-    "toolbar": false
+    "frame": true,
+    "toolbar": true
   },
   "single-instance": true,
   "dependencies" : {
