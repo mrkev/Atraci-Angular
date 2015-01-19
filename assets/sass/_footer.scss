@@ -4,7 +4,6 @@ footer
   @include calc(width, #{"100% - " + $sideBarWidth});
   height: $playerHeight;
   box-sizing: border-box;
-  border-top: $separatorBorder;
   position: relative;
   transition: all 0.2s;
 
@@ -24,7 +23,7 @@ footer
   .togglePlaylistButton
   {
     position: absolute;
-    top: -21px;
+    top: -20px;
     background: $mainRed;
     width: 60px;
     height: 20px;

@@ -52,19 +52,32 @@ var nwpath = function(platform) {
 const PLATFORM = false || currentPlatform(); // Pass wanted platform all/osx32/osx64/win32/win6/linux32/linux64
 
 var Globals = {
-    "nwVersion" : "0.11.3"
+    "nwVersion" : "0.12.0-alpha2"
 };
 
 
 
 gulp.task('default', ['buildDev']);
-gulp.task('buildFirst', ['scssToCss', 'minifyCss', 'concatJS', 'nwBuild', 'openApp']);
+gulp.task('buildFirst', ['scssToCss', 'minifyCss', 'concatJS', 'nwBuild']);
 gulp.task('buildDev', ['scssToCss', 'concatJS', 'openApp']);
 
 gulp.task('nwBuild', function () {
+    var ProdNodeModules = [
+        "./node_modules/angular/angular.min.js",
+        "./node_modules/angular-animate/angular-animate.min.js",
+        "./node_modules/angular-resource/angular-resource.min.js",
+        "./node_modules/angular-route/angular-route.min.js",
+        "./node_modules/angular-route/angular-route.min.js",
+        "./node_modules/moment/**",
+        "./node_modules/request/**",
+        "./node_modules/youtube-dl/**",
+        "./node_modules/youtube-api/**",
+        "./node_modules/nedb/**",
+        "./node_modules/underscore/underscore-min.js"
+    ];
     var nw = new nwBuilder({
         version : Globals.nwVersion,
-        files : ["./app/**", "./assets/**", "./node_modules/**", "./package.json", "./index.html", "!./assets/sass/**"],
+        files : ["./app/**", "./node_modules", "./assets/**", "./package.json", "./index.html", "!./assets/sass/**"].concat(ProdNodeModules),
         platforms : (!PLATFORM || PLATFORM == 'all' ? ['osx32', 'osx64', 'linux32', 'linux64', 'win32', 'win64'] : [PLATFORM])
     }).on('log', function (msg) { gutil.log('node-webkit-builder', msg) });
     return nw.build().catch(function (err) {

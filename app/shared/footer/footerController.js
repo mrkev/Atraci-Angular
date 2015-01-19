@@ -1,7 +1,8 @@
-app.controller('footerController', function ($rootScope, $scope, playerService, storageService) {
-    var ytdl = require('ytdl'),
-        request = require('request'),
-        moment = require('moment');
+app.controller('footerController', function ($rootScope, $scope, playerService, storageService, DBService) {
+    var request = require('request'),
+        moment = require('moment'),
+        Youtube = require("youtube-api"),
+        YoutubeDL = require('youtube-dl');
 
     $scope.tracks = [];
     $scope.tracksHashes = [];
@@ -47,41 +48,27 @@ app.controller('footerController', function ($rootScope, $scope, playerService, 
         playerService.pause();
         $scope.currentPlayingTrack = $scope.tracks[index];
         $rootScope.setHash($scope.currentPlayingTrack);
-        $scope.getVideo({
-            url : 'http://gdata.youtube.com/feeds/api/videos?alt=json&max-results=1&q=' + encodeURIComponent($scope.currentPlayingTrack.artist + ' - ' + $scope.currentPlayingTrack.title),
-            json : true
-        }, function (error, response, data) {
-            if(!data.feed.entry)
-            {
-                console.log("Not Found");
-                return false;
-            }
-
-            $scope.getInfo(data.feed.entry[0].link[0].href, { downloadURL : true }, function (err, info) {
-                if(err)
-                {
-                    console.log(err);
-                    return false;
-                }
-
-                var streamUrls = [],
-                    itagPriorities = [85,43,82];
-
-                for(var f in info.formats)
-                {
-                    var currentFormat = info.formats[f];
-                    streamUrls[currentFormat.itag] = currentFormat.url;
-                }
-
-                for(var it in itagPriorities)
-                    if(streamUrls[itagPriorities[it]])
-                        playerService.playSource(streamUrls[itagPriorities[it]]);
-            })
+        $scope.getVideo($scope.currentPlayingTrack.artist + ' - ' + $scope.currentPlayingTrack.title, function (error, data, videoId) {
+            $scope.getInfo(videoId, ['--max-quality=43'], function (err, info) {
+                DBService.InsertNewHistory($scope.currentPlayingTrack);
+                playerService.playSource(info.url);
+            });
         })
     };
 
-    $scope.getVideo = function(options, cb){
-        request(options, cb);
+    $scope.getVideo = function(name, cb){
+        Youtube.authenticate({
+            type : "key",
+            key  : "AIzaSyC6UnNP6_Axc4IOhKKp46zmhF2e-nP4rvQ"
+        });
+
+        Youtube.search.list({
+            q : name,
+            part : "snippet"
+        }, function (err, data) {
+            var returnUrl = "http://www.youtube.com/watch?v=" +data.items[0].id.videoId;
+            cb(err, data, returnUrl);
+        });
     };
 
     $scope.setVolume = function($event) {
@@ -90,9 +77,9 @@ app.controller('footerController', function ($rootScope, $scope, playerService, 
         playerService.setVolume(calculatedPercent);
         storageService.set();
     };
-    
+
     $scope.getInfo = function (link, options, cb) {
-        ytdl.getInfo(link, options, cb);
+        YoutubeDL.getInfo(link, options, cb);
     };
 
     $scope.goToNext = function () {

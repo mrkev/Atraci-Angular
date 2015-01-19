@@ -1,8 +1,9 @@
-app.controller("MainAppController", function($rootScope, $scope, $location){
+app.controller("MainAppController", function($rootScope, $scope, $location, DBService){
     $scope.searchTerm = null;
     $scope.version = require('./package.json').version;
     $scope.isPlayerMax = false;
     $scope.$location = $location;
+    $rootScope.playlists = [];
     $rootScope.currentHash = null;
     $rootScope.getHash = function(trackObj){
         return (trackObj.artist + trackObj.title).replace(/\s+/g, '').replace(/\W/g, '').toLowerCase();
@@ -23,5 +24,15 @@ app.controller("MainAppController", function($rootScope, $scope, $location){
 
     $scope.getLocationPath = function (path, startsWith) {
         return startsWith ? ($location.path().indexOf(path) == 0) : ($location.path() == path);
-    }
+    };
+
+    DBService.getAllPlaylists(function (data) {
+        $rootScope.playlists = data;
+    });
+
+    $scope.$on('addTrackToPlaylist', function(event, args){
+        var track = args.trackObject,
+            playlistID = args.playlistID;
+        DBService.InsertNewPlaylistTrack(track, playlistID);
+    });
 });
